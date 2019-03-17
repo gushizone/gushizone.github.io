@@ -145,18 +145,18 @@
   </script>
 
 
-  <meta name="description" content="反射机制 是 Java 提供的一种让我们在运行时识别对象类型的方式。通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。">
+  <meta name="description" content="反射机制 是 Java 提供的一种让我们在运行时识别对象类型的方式。 通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。">
 <meta name="keywords" content="Java,JDK,RTTI,反射">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈Java之RTTI与反射">
 <meta property="og:url" content="https://gushizone.github.io/2019/03/01/浅谈Java之RTTI与反射/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
-<meta property="og:description" content="反射机制 是 Java 提供的一种让我们在运行时识别对象类型的方式。通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。">
+<meta property="og:description" content="反射机制 是 Java 提供的一种让我们在运行时识别对象类型的方式。 通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-09T07:08:20.975Z">
+<meta property="og:updated_time" content="2019-03-14T07:55:44.373Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Java之RTTI与反射">
-<meta name="twitter:description" content="反射机制 是 Java 提供的一种让我们在运行时识别对象类型的方式。通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。">
+<meta name="twitter:description" content="反射机制 是 Java 提供的一种让我们在运行时识别对象类型的方式。 通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。">
 
 
 
@@ -521,7 +521,7 @@
       
 
       
-        <p><code>反射机制</code> 是 Java 提供的一种让我们在运行时识别对象类型的方式。通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。</p>
+        <p><strong><code>反射机制</code> 是 Java 提供的一种让我们在运行时识别对象类型的方式。</strong> 通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。</p>
 <a id="more"></a>
 <h1 id="RTTI"><a href="#RTTI" class="headerlink" title="RTTI"></a>RTTI</h1><p><strong><code>RTTI（Run-Time Type Identification）</code> : 运行时识别对象类型。</strong></p>
 <p>Java 提供了三种方式， 让我们可以在运行时识别一个对象的类型。</p>
@@ -640,7 +640,7 @@
 <p>虽然不会有什么影响，但 <strong>一般还是不推荐使用这种方式</strong> 。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Class clazz = User.class;</span><br><span class="line">Object obj = clazz.newInstance();</span><br><span class="line"></span><br><span class="line">Field[] fields = clazz.getDeclaredFields();</span><br><span class="line"><span class="keyword">for</span> (Field field : fields) &#123;</span><br><span class="line">    <span class="keyword">int</span> mod = field.getModifiers();</span><br><span class="line">    <span class="keyword">if</span> (Modifier.isStatic(mod) || Modifier.isFinal(mod)) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 操作私有域：不进行访问域检查</span></span><br><span class="line">    field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">    field.set(obj, map.get(field.getName()));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(obj);</span><br><span class="line"><span class="comment">// User&#123;username='张三', age=10, birthdate=Mon Mar 04 15:50:19 CST 2019, salary=123.321&#125;</span></span><br></pre></td></tr></table></figure>
 <h3 id="反射Getter和Setter"><a href="#反射Getter和Setter" class="headerlink" title="反射Getter和Setter"></a>反射Getter和Setter</h3><p>这里推荐使用 <code>PropertyDescriptor</code> ，通过它可以友好的使用 <code>Getter</code> 和 <code>Setter</code> 。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Class clazz = User.class;</span><br><span class="line">Object obj = clazz.newInstance();</span><br><span class="line"></span><br><span class="line">Field[] fields = clazz.getDeclaredFields();</span><br><span class="line"><span class="keyword">for</span> (Field field : fields) &#123;</span><br><span class="line">    PropertyDescriptor pd = <span class="keyword">new</span> PropertyDescriptor(field.getName(), clazz);</span><br><span class="line">    Method wm = pd.getWriteMethod(); <span class="comment">// 写放方法</span></span><br><span class="line">    wm.invoke(obj, map.get(field.getName()));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(obj);</span><br><span class="line"><span class="comment">// User&#123;username='张三', age=10, birthdate=Mon Mar 04 16:13:26 CST 2019, salary=123.321&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Class clazz = User.class;</span><br><span class="line">Object obj = clazz.newInstance();</span><br><span class="line"></span><br><span class="line">Field[] fields = clazz.getDeclaredFields();</span><br><span class="line"><span class="keyword">for</span> (Field field : fields) &#123;</span><br><span class="line">    PropertyDescriptor pd = <span class="keyword">new</span> PropertyDescriptor(field.getName(), clazz);</span><br><span class="line">    Method wm = pd.getWriteMethod(); <span class="comment">// 写方法</span></span><br><span class="line">    wm.invoke(obj, map.get(field.getName()));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(obj);</span><br><span class="line"><span class="comment">// User&#123;username='张三', age=10, birthdate=Mon Mar 04 16:13:26 CST 2019, salary=123.321&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="构造反射"><a href="#构造反射" class="headerlink" title="构造反射"></a>构造反射</h2><p>反射无参构造器：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class c1 = Foo.class;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要有无参数的构造方法</span></span><br><span class="line">Foo foo = (Foo) c1.newInstance();</span><br></pre></td></tr></table></figure>
 <p>反射有参构造器：</p>
@@ -733,6 +733,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/11/浅谈Java之注解/" rel="prev" title="浅谈Java之注解">
+                浅谈Java之注解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -802,7 +806,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -898,7 +902,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1031,7 +1039,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">110k</span>
+    <span title="站点总字数">119k</span>
   
 
   
