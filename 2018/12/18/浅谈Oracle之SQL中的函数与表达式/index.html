@@ -150,14 +150,14 @@
 
 
   <meta name="description" content="针对 Oracle，本文会谈一谈，在 sql 中常会使用到的函数和表达式，适当的使用它们，可以提高开发效率和质量。  本文示例均使用 oracle 自带的示例表。     涉及一览 说明     CASE... WHEN... 类似于 IF/ELSE 。   WITH... AS 相当于创建临时表，适用于需要重复处理一类数据   NVL() / NVL2() NULL 处理，此时类似 IF/ELS">
-<meta name="keywords" content="SQL,Oracle">
+<meta name="keywords" content="Oracle,SQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈Oracle之SQL中的函数与表达式">
 <meta property="og:url" content="https://gushizone.github.io/2018/12/18/浅谈Oracle之SQL中的函数与表达式/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="针对 Oracle，本文会谈一谈，在 sql 中常会使用到的函数和表达式，适当的使用它们，可以提高开发效率和质量。  本文示例均使用 oracle 自带的示例表。     涉及一览 说明     CASE... WHEN... 类似于 IF/ELSE 。   WITH... AS 相当于创建临时表，适用于需要重复处理一类数据   NVL() / NVL2() NULL 处理，此时类似 IF/ELS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-04T09:25:55.459Z">
+<meta property="og:updated_time" content="2019-05-01T07:04:35.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Oracle之SQL中的函数与表达式">
 <meta name="twitter:description" content="针对 Oracle，本文会谈一谈，在 sql 中常会使用到的函数和表达式，适当的使用它们，可以提高开发效率和质量。  本文示例均使用 oracle 自带的示例表。     涉及一览 说明     CASE... WHEN... 类似于 IF/ELSE 。   WITH... AS 相当于创建临时表，适用于需要重复处理一类数据   NVL() / NVL2() NULL 处理，此时类似 IF/ELS">
@@ -276,6 +276,8 @@
     
 
     
+      
+    
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
@@ -293,8 +295,10 @@
     
 
     
+      
+    
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">36</span></a>
 
   </li>
         
@@ -310,8 +314,10 @@
     
 
     
+      
+    
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">5</span></a>
 
   </li>
         
@@ -327,8 +333,10 @@
     
 
     
+      
+    
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">19</span></a>
 
   </li>
 
@@ -501,7 +509,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.9k</span>
+                <span title="本文字数">5.2k</span>
               
 
               
@@ -673,9 +681,19 @@
 </tr>
 </tbody>
 </table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- sql 调试时，可以直接使用以下方式。</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">date</span><span class="string">'2018-03-19'</span> <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
 <h2 id="ROW-NUMBER-OVER"><a href="#ROW-NUMBER-OVER" class="headerlink" title="ROW_NUMBER() OVER"></a><code>ROW_NUMBER() OVER</code></h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 将表按照a字段进行分组，之后按照b字段进行组内排序，并给出排序的编号。</span></span><br><span class="line">ROW_NUMBER() OVER (PARTITION BY a ORDER BY b)</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> </span><br><span class="line">	(<span class="keyword">select</span> empno,</span><br><span class="line">             ename,</span><br><span class="line">             job,</span><br><span class="line">             sal,</span><br><span class="line">             ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> job <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>) <span class="keyword">as</span> job_rank</span><br><span class="line">             <span class="keyword">from</span> emp)</span><br><span class="line">  <span class="keyword">where</span> job_rank = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h2 id="LISTAGG-WITHIN-GROUP"><a href="#LISTAGG-WITHIN-GROUP" class="headerlink" title="LISTAGG(...) WITHIN GROUP(...)"></a><code>LISTAGG(...) WITHIN GROUP(...)</code></h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">    deptno, </span><br><span class="line">    <span class="keyword">listagg</span>(ename, <span class="string">','</span>) <span class="keyword">within</span> <span class="keyword">group</span>(<span class="keyword">order</span> <span class="keyword">by</span> sal) <span class="keyword">as</span> <span class="keyword">name</span></span><br><span class="line"><span class="keyword">from</span> emp</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> deptno;</span><br></pre></td></tr></table></figure>
+<p>根据工作进行分组，并按薪资进行降序排名。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> empno,ename,job,sal,</span><br><span class="line">   ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> job <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>) <span class="keyword">as</span> job_rank</span><br><span class="line"><span class="keyword">from</span> emp</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">     EMPNO ENAME      JOB              SAL   JOB_RANK</span><br><span class="line"><span class="comment">---------- ---------- --------- ---------- ----------</span></span><br><span class="line">      7902 FORD       ANALYST         3000          1</span><br><span class="line">      7788 SCOTT      ANALYST         3000          2</span><br><span class="line">      7934 MILLER     CLERK           1300          1</span><br><span class="line">      7876 ADAMS      CLERK           1100          2</span><br><span class="line">      7900 JAMES      CLERK            950          3</span><br><span class="line">      7369 SMITH      CLERK            800          4</span><br><span class="line">      7566 JONES      MANAGER         2975          1</span><br><span class="line">      7698 BLAKE      MANAGER         2850          2</span><br><span class="line">      7782 CLARK      MANAGER         2450          3</span><br><span class="line">      7839 KING       PRESIDENT       5000          1</span><br><span class="line">      7499 ALLEN      SALESMAN        1600          1</span><br><span class="line">      7844 TURNER     SALESMAN        1500          2</span><br><span class="line">      7654 MARTIN     SALESMAN        1250          3</span><br><span class="line">      7521 WARD       SALESMAN        1250          4</span><br></pre></td></tr></table></figure>
+<h2 id="LISTAGG-WITHIN-GROUP"><a href="#LISTAGG-WITHIN-GROUP" class="headerlink" title="LISTAGG(...) WITHIN GROUP(...)"></a><code>LISTAGG(...) WITHIN GROUP(...)</code></h2><p>列值拼接，根据 <code>sal</code> 排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">    <span class="keyword">listagg</span>(ename, <span class="string">','</span>) <span class="keyword">within</span> <span class="keyword">group</span>(<span class="keyword">order</span> <span class="keyword">by</span> sal) <span class="keyword">as</span> <span class="keyword">name</span></span><br><span class="line"><span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">SMITH,JAMES,ADAMS,MARTIN,WARD,MILLER,TURNER,ALLEN,CLARK,BLAKE,JONES,FORD,SCOTT,KING</span><br></pre></td></tr></table></figure>
+<p>一般配合分组使用。</p>
+<blockquote>
+<p>列举各部门的员工，并按工资排序。</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">    deptno, </span><br><span class="line">    <span class="keyword">listagg</span>(ename, <span class="string">','</span>) <span class="keyword">within</span> <span class="keyword">group</span>(<span class="keyword">order</span> <span class="keyword">by</span> sal) <span class="keyword">as</span> <span class="keyword">name</span></span><br><span class="line"><span class="keyword">from</span> emp</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> deptno;</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DEPTNO       NAME</span><br><span class="line">-------    ---------------------------------------</span><br><span class="line">10         MILLER,CLARK,KING</span><br><span class="line">20         SMITH,ADAMS,JONES,FORD,SCOTT</span><br><span class="line">30         JAMES,MARTIN,WARD,TURNER,ALLEN,BLAKE</span><br></pre></td></tr></table></figure>
 <h2 id="START-WITH-CONNECT-BY-PRIOR"><a href="#START-WITH-CONNECT-BY-PRIOR" class="headerlink" title="START WITH...CONNECT BY PRIOR..."></a><code>START WITH...CONNECT BY PRIOR...</code></h2><p>对树结构的递归查询。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM T</span><br><span class="line">-- 开始条件（父节点为空）</span><br><span class="line">START WITH p_id is null</span><br><span class="line">-- 连接条件：向prior跟随的节点类型方向遍历（向子节点方向递归遍历）</span><br><span class="line">CONNECT BY PRIOR id = p_id</span><br><span class="line">-- 等同 CONNECT BY p_id = PRIOR id</span><br></pre></td></tr></table></figure>
@@ -702,6 +720,8 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 获得时间重叠的数据(验证时间是否重叠)</span></span><br><span class="line"><span class="keyword">select</span> ... <span class="keyword">from</span>  <span class="keyword">table</span> t <span class="keyword">where</span> ... <span class="keyword">and</span>  <span class="keyword">not</span> ( t.betginTime &gt; <span class="string">'参数结束时间'</span> <span class="keyword">or</span> t.endTime &lt; <span class="string">'参数开始时间'</span> )</span><br></pre></td></tr></table></figure>
 <h2 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h2><p>Oracle 中没有自增主键，此时可以使用 sequence 代替。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DROP SEQUENCE TAX_SEQUENCE;</span><br><span class="line">CREATE SEQUENCE TAX_SEQUENCE INCREMENT BY 1 START WITH 100000  MAXVALUE 100000000 MINVALUE 1 NOCYCLE</span><br><span class="line">CACHE 20 NOORDER;</span><br></pre></td></tr></table></figure>
+<p><strong>使用方式</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 直接使用，可以直接在 SQL 中使用。</span></span><br><span class="line">TAX_SEQUENCE.NEXTVAL</span><br><span class="line"><span class="comment">-- 间接使用，例如提供给 Java 程序。</span></span><br><span class="line"><span class="keyword">select</span> TAX_SEQUENCE.NEXTVAL <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -749,9 +769,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"></i> SQL</a>
-          
             <a href="/tags/Oracle/" rel="tag"><i class="fa fa-tag"></i> Oracle</a>
+          
+            <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"></i> SQL</a>
           
         </div>
       
@@ -847,7 +867,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -951,7 +971,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1084,7 +1116,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">122k</span>
+    <span title="站点总字数">139k</span>
   
 
   

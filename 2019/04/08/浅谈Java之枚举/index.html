@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="使用关键字 enum 可以定义枚举类型，枚举类型可以包含一组序列集，可以作为常规的程序组件使用。当我们需要从固定的序列中获取值时，使用枚举类型是一个很好的方式。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-14T14:04:11.260Z">
+<meta property="og:updated_time" content="2019-04-30T02:54:10.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Java之枚举">
 <meta name="twitter:description" content="使用关键字 enum 可以定义枚举类型，枚举类型可以包含一组序列集，可以作为常规的程序组件使用。当我们需要从固定的序列中获取值时，使用枚举类型是一个很好的方式。">
@@ -276,6 +276,8 @@
     
 
     
+      
+    
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
@@ -293,8 +295,10 @@
     
 
     
+      
+    
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">36</span></a>
 
   </li>
         
@@ -310,8 +314,10 @@
     
 
     
+      
+    
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">5</span></a>
 
   </li>
         
@@ -327,8 +333,10 @@
     
 
     
+      
+    
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">19</span></a>
 
   </li>
 
@@ -501,7 +509,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.5k</span>
+                <span title="本文字数">2.6k</span>
               
 
               
@@ -568,7 +576,7 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(SimpleEnum.SUCCESS.ordinal());</span><br><span class="line">System.out.println(SimpleEnum.SUCCESS == SimpleEnum.SUCCESS);</span><br><span class="line"></span><br><span class="line">System.out.println(SimpleEnum.WARNING.name());</span><br><span class="line">System.out.println(SimpleEnum.WARNING.toString());</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(SimpleEnum.SUCCESS.ordinal());</span><br><span class="line">System.out.println(SimpleEnum.SUCCESS == SimpleEnum.SUCCESS);</span><br><span class="line"></span><br><span class="line">System.out.println(SimpleEnum.WARNING.name());</span><br><span class="line">System.out.println(SimpleEnum.WARNING.toString());</span><br><span class="line"></span><br><span class="line">System.out.println(SimpleEnum.ERROR.getDeclaringClass());</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">WARNING</span><br><span class="line">WARNING</span><br><span class="line">class org.demo.enumdemo.SimpleEnum</span><br></pre></td></tr></table></figure>
 <p>与 <code>name()</code> 方法对应，也可以通过枚举的名字获取枚举类型。</p>
 <table>
@@ -606,7 +614,7 @@
 <h1 id="解析-values"><a href="#解析-values" class="headerlink" title="解析 values()"></a>解析 <code>values()</code></h1><p>enum 提供了一个遍历的方法 <code>values()</code> 。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (DictCode item : DictCode.values()) &#123;</span><br><span class="line">  System.out.println(item.name() + <span class="string">": "</span> + item.getCodeName() + <span class="string">"-"</span> + item.getCode());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SUCCESS: 成功-0</span><br><span class="line">WARNING: 警告-1</span><br><span class="line">ERROR: 错误-2</span><br></pre></td></tr></table></figure>
-<p><strong>实际上， <code>values()</code> 是编辑器添加的静态方法，而不是继承自Enum。</strong> </p>
+<p><strong>实际上， <code>values()</code> 是编译器添加的静态方法，而不是继承自Enum。</strong> </p>
 <p>如果我们想遍历Enum可以使用 Class类 的 <code>getEnumConstants()</code> 方法。</p>
 <blockquote>
 <p>因为该方法来自 Class类，故也可用在没枚举类型上，但会报空指针异常。</p>
@@ -687,6 +695,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/04/30/浅谈LOG之Log4j/" rel="prev" title="浅谈LOG之Log4j">
+                浅谈LOG之Log4j <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -756,7 +768,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -860,7 +872,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -993,7 +1017,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">122k</span>
+    <span title="站点总字数">139k</span>
   
 
   
