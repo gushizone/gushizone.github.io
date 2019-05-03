@@ -45,11 +45,9 @@
 
 
 
-
-
   
   
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -91,19 +89,19 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
 
 
 
@@ -116,8 +114,10 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
     fancybox: true,
     fastclick: false,
     lazyload: true,
@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="Maven基于 项目对象模型（POM） ，是纯 Java 开发的开源项目，可以用于 构建和管理各种项目 。类似工具还有： Ant 、 gradle 。  官网： Apache Maven 公共仓库 https://search.maven.org/ https://mvnrepository.com/ https://maven.aliyun.com    构件 &amp;amp; 仓库maven构件 :">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-05T07:31:47.021Z">
+<meta property="og:updated_time" content="2019-04-05T07:31:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Maven">
 <meta name="twitter:description" content="Maven基于 项目对象模型（POM） ，是纯 Java 开发的开源项目，可以用于 构建和管理各种项目 。类似工具还有： Ant 、 gradle 。  官网： Apache Maven 公共仓库 https://search.maven.org/ https://mvnrepository.com/ https://maven.aliyun.com    构件 &amp;amp; 仓库maven构件 :">
@@ -166,7 +166,8 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="https://gushizone.github.io/2019/01/12/浅谈Maven/">
 
 
@@ -509,7 +510,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">12k</span>
+                <span title="本文字数">6.2k</span>
               
 
               
@@ -1302,6 +1303,8 @@
           
 
           
+
+          
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
@@ -1424,7 +1427,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">139k</span>
+    <span title="站点总字数">45k</span>
   
 
   
@@ -1439,7 +1442,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
 
 
 
@@ -1522,42 +1525,47 @@
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script src="/js/src/utils.js?v=7.0.1"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
 
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=7.0.1"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
-
+  <script src="/js/motion.js?v=7.1.1"></script>
 
 
 
   
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+  <script src="/js/next-boot.js?v=7.1.1"></script>
 
 
   
+
+  
+
+  
+
   
 
 
@@ -1888,6 +1896,8 @@
 
 
 
+
+  
 
   
 

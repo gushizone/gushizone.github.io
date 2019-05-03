@@ -45,11 +45,9 @@
 
 
 
-
-
   
   
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -91,19 +89,19 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
 
 
 
@@ -116,8 +114,10 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
     fancybox: true,
     fastclick: false,
     lazyload: true,
@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="Spring 在管理 Bean 时会使用到各种注解 ，本文谈谈其常会用到的注解。 以下是常用DI注解比较：    DI 常用注解 说明 用途     @Autowired 自动装配，从ApplicationContext中取出 同类型 的bean装配到被注解项上。 属性 / setter / 构造器   @Qualifier 因为 @Autowired 按照类型自动装配可能存在多个bean实例，可">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-02T07:06:11.737Z">
+<meta property="og:updated_time" content="2019-05-01T07:42:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Spring DI注解">
 <meta name="twitter:description" content="Spring 在管理 Bean 时会使用到各种注解 ，本文谈谈其常会用到的注解。 以下是常用DI注解比较：    DI 常用注解 说明 用途     @Autowired 自动装配，从ApplicationContext中取出 同类型 的bean装配到被注解项上。 属性 / setter / 构造器   @Qualifier 因为 @Autowired 按照类型自动装配可能存在多个bean实例，可">
@@ -166,7 +166,8 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="https://gushizone.github.io/2018/11/09/浅谈Spring-DI注解/">
 
 
@@ -509,7 +510,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.5k</span>
+                <span title="本文字数">2.5k</span>
               
 
               
@@ -566,7 +567,7 @@
 </tr>
 </tbody>
 </table>
-<h1 id="Required"><a href="#Required" class="headerlink" title="@Required"></a><code>@Required</code></h1><p>表示被修饰属性项，在初始化时一定要配置明确值。只能用于setter。</p>
+<h1 id="Required"><a href="#Required" class="headerlink" title="@Required"></a><code>@Required</code></h1><p>表示被修饰属性项，在初始化时一定要配置明确值。可以用于属性 / setter。</p>
 <h1 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a><code>@Autowired</code></h1><p>自动装配，从ApplicationContext中取出 <strong>同类型</strong> 的bean装配到被注解项上。可以用于 属性 / setter / 构造器。</p>
 <p><strong>注意事项 :</strong></p>
 <ul>
@@ -918,6 +919,8 @@
           
 
           
+
+          
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
@@ -1040,7 +1043,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">139k</span>
+    <span title="站点总字数">45k</span>
   
 
   
@@ -1055,7 +1058,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
 
 
 
@@ -1138,42 +1141,47 @@
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script src="/js/src/utils.js?v=7.0.1"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
 
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=7.0.1"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
-
+  <script src="/js/motion.js?v=7.1.1"></script>
 
 
 
   
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+  <script src="/js/next-boot.js?v=7.1.1"></script>
 
 
   
+
+  
+
+  
+
   
 
 
@@ -1504,6 +1512,8 @@
 
 
 
+
+  
 
   
 

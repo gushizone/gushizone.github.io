@@ -45,11 +45,9 @@
 
 
 
-
-
   
   
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -91,19 +89,19 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
 
 
 
@@ -116,8 +114,10 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
     fancybox: true,
     fastclick: false,
     lazyload: true,
@@ -159,7 +159,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/git.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/git_%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E6%96%B9%E6%A1%88.png">
-<meta property="og:updated_time" content="2019-03-12T01:44:34.000Z">
+<meta property="og:updated_time" content="2019-05-02T02:12:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Git">
 <meta name="twitter:description" content="Git 是一个开源的分布式版本控制系统（VCS），也是个内容管理系统(CMS)，可以高效地处理各种项目。  官网： Git Pro Git  基本操作以下是 Git 的基本命令和对应操作内容的示意图：  域新建的一个 git项目，会在项目根目录下创建一个隐藏的 .git 目录，用于存放 git 所需信息。当我们变更项目文件时是不会直接作用于 git 的，需要相关命令才能触发相应操作。一般也将 .g">
@@ -169,7 +169,8 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="https://gushizone.github.io/2019/01/04/浅谈Git/">
 
 
@@ -512,7 +513,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.6k</span>
+                <span title="本文字数">1.5k</span>
               
 
               
@@ -615,7 +616,7 @@
 </tbody>
 </table>
 <h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">$ git <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
-<p>git 的部分命令可能会调用 vim 文本编辑器，这里简单列举一些常用操作：</p>
+<p>git 的部分命令可能会调用 vim 文本编辑器，这里列举一些常用操作：</p>
 <table>
 <thead>
 <tr>
@@ -625,12 +626,16 @@
 </thead>
 <tbody>
 <tr>
+<td><code>/</code></td>
+<td>输入字符即可查询。</td>
+</tr>
+<tr>
 <td><code>i</code></td>
 <td>切换光标为输入/替换模式，光标将变成竖线/下划线。</td>
 </tr>
 <tr>
 <td><code>Esc</code></td>
-<td>退出当前模式</td>
+<td>退出当前模式。</td>
 </tr>
 <tr>
 <td><code>shift</code> + <code>:</code></td>
@@ -952,6 +957,8 @@
           
 
           
+
+          
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
@@ -1074,7 +1081,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">139k</span>
+    <span title="站点总字数">45k</span>
   
 
   
@@ -1089,7 +1096,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
 
 
 
@@ -1172,42 +1179,47 @@
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script src="/js/src/utils.js?v=7.0.1"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
 
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=7.0.1"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
-
+  <script src="/js/motion.js?v=7.1.1"></script>
 
 
 
   
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+  <script src="/js/next-boot.js?v=7.1.1"></script>
 
 
   
+
+  
+
+  
+
   
 
 
@@ -1538,6 +1550,8 @@
 
 
 
+
+  
 
   
 

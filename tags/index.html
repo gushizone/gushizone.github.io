@@ -45,11 +45,9 @@
 
 
 
-
-
   
   
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -91,19 +89,19 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
 
 
 
@@ -116,8 +114,10 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
     fancybox: true,
     fastclick: false,
     lazyload: true,
@@ -165,7 +165,8 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="https://gushizone.github.io/tags/">
 
 
@@ -585,7 +586,9 @@
               目前共计 30 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/Blog/" style="font-size: 12px; color: #ccc">Blog</a> <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/GitHub/" style="font-size: 12px; color: #ccc">GitHub</a> <a href="/tags/HTML/" style="font-size: 12px; color: #ccc">HTML</a> <a href="/tags/Hexo/" style="font-size: 12px; color: #ccc">Hexo</a> <a href="/tags/JDK/" style="font-size: 30px; color: #111">JDK</a> <a href="/tags/JSON/" style="font-size: 12px; color: #ccc">JSON</a> <a href="/tags/Jackson/" style="font-size: 12px; color: #ccc">Jackson</a> <a href="/tags/Java/" style="font-size: 30px; color: #111">Java</a> <a href="/tags/LOG/" style="font-size: 18px; color: #8e8e8e">LOG</a> <a href="/tags/Log4j/" style="font-size: 12px; color: #ccc">Log4j</a> <a href="/tags/Logback/" style="font-size: 12px; color: #ccc">Logback</a> <a href="/tags/Maven/" style="font-size: 12px; color: #ccc">Maven</a> <a href="/tags/NexT/" style="font-size: 12px; color: #ccc">NexT</a> <a href="/tags/Oracle/" style="font-size: 12px; color: #ccc">Oracle</a> <a href="/tags/RTTI/" style="font-size: 12px; color: #ccc">RTTI</a> <a href="/tags/SL4J/" style="font-size: 18px; color: #8e8e8e">SL4J</a> <a href="/tags/SQL/" style="font-size: 12px; color: #ccc">SQL</a> <a href="/tags/Spring/" style="font-size: 24px; color: #4f4f4f">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 18px; color: #8e8e8e">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 24px; color: #4f4f4f">Thymeleaf</a> <a href="/tags/Thymeleaf-Layout/" style="font-size: 12px; color: #ccc">Thymeleaf Layout</a> <a href="/tags/Thymeleaf-Layout-Dialect/" style="font-size: 12px; color: #ccc">Thymeleaf Layout Dialect</a> <a href="/tags/URL/" style="font-size: 12px; color: #ccc">URL</a> <a href="/tags/XML/" style="font-size: 12px; color: #ccc">XML</a> <a href="/tags/反射/" style="font-size: 12px; color: #ccc">反射</a> <a href="/tags/字符编码/" style="font-size: 12px; color: #ccc">字符编码</a> <a href="/tags/开发工具/" style="font-size: 18px; color: #8e8e8e">开发工具</a> <a href="/tags/枚举/" style="font-size: 12px; color: #ccc">枚举</a> <a href="/tags/注解/" style="font-size: 12px; color: #ccc">注解</a>
+              
+                <a href="/tags/Blog/" style="font-size: 12px; color: #ccc">Blog</a> <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/GitHub/" style="font-size: 12px; color: #ccc">GitHub</a> <a href="/tags/HTML/" style="font-size: 12px; color: #ccc">HTML</a> <a href="/tags/Hexo/" style="font-size: 12px; color: #ccc">Hexo</a> <a href="/tags/JDK/" style="font-size: 30px; color: #111">JDK</a> <a href="/tags/JSON/" style="font-size: 12px; color: #ccc">JSON</a> <a href="/tags/Jackson/" style="font-size: 12px; color: #ccc">Jackson</a> <a href="/tags/Java/" style="font-size: 30px; color: #111">Java</a> <a href="/tags/LOG/" style="font-size: 18px; color: #8e8e8e">LOG</a> <a href="/tags/Log4j/" style="font-size: 12px; color: #ccc">Log4j</a> <a href="/tags/Logback/" style="font-size: 12px; color: #ccc">Logback</a> <a href="/tags/Maven/" style="font-size: 12px; color: #ccc">Maven</a> <a href="/tags/NexT/" style="font-size: 12px; color: #ccc">NexT</a> <a href="/tags/Oracle/" style="font-size: 12px; color: #ccc">Oracle</a> <a href="/tags/RTTI/" style="font-size: 12px; color: #ccc">RTTI</a> <a href="/tags/SL4J/" style="font-size: 18px; color: #8e8e8e">SL4J</a> <a href="/tags/SQL/" style="font-size: 12px; color: #ccc">SQL</a> <a href="/tags/Spring/" style="font-size: 24px; color: #4f4f4f">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 18px; color: #8e8e8e">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 24px; color: #4f4f4f">Thymeleaf</a> <a href="/tags/Thymeleaf-Layout/" style="font-size: 12px; color: #ccc">Thymeleaf Layout</a> <a href="/tags/Thymeleaf-Layout-Dialect/" style="font-size: 12px; color: #ccc">Thymeleaf Layout Dialect</a> <a href="/tags/URL/" style="font-size: 12px; color: #ccc">URL</a> <a href="/tags/XML/" style="font-size: 12px; color: #ccc">XML</a> <a href="/tags/反射/" style="font-size: 12px; color: #ccc">反射</a> <a href="/tags/字符编码/" style="font-size: 12px; color: #ccc">字符编码</a> <a href="/tags/开发工具/" style="font-size: 18px; color: #8e8e8e">开发工具</a> <a href="/tags/枚举/" style="font-size: 12px; color: #ccc">枚举</a> <a href="/tags/注解/" style="font-size: 12px; color: #ccc">注解</a>
+              
             </div>
           </div>
         
@@ -774,6 +777,8 @@
           
 
           
+
+          
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
@@ -879,7 +884,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">139k</span>
+    <span title="站点总字数">45k</span>
   
 
   
@@ -894,7 +899,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
 
 
 
@@ -977,42 +982,47 @@
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script src="/js/src/utils.js?v=7.0.1"></script>
+  <script src="/js/utils.js?v=7.1.1"></script>
 
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=7.0.1"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
-
+  <script src="/js/motion.js?v=7.1.1"></script>
 
 
 
   
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
 
 
 
   
 
 
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+  <script src="/js/next-boot.js?v=7.1.1"></script>
 
 
   
+
+  
+
+  
+
   
 
 
@@ -1343,6 +1353,8 @@
 
 
 
+
+  
 
   
 

@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-    // 去除修改文章后，文章目录的新增加标识：小圆点
+  // 去除修改文章后，文章目录的新增加标识：小圆点
   var newNav = $('.post-toc-content>li');
   if(newNav){
     newNav.remove();
