@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="Java8（又称为 JDK8）是 Java 语言开发的一个重要版本，于2014年发布。 JDK8 可以说是里程碑式的版本，提供了很多的新功能，支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。 本文仅涉及编程开发中常用的特性 。  官网：JDK8新功能  函数式编程JDK8 提供了函数式编程支持，不再是单纯的面对对象。 函数编程语言 最重要的基础是λ">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-04T06:45:32.000Z">
+<meta property="og:updated_time" content="2019-05-15T16:14:55.417Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈JDK8新特性">
 <meta name="twitter:description" content="Java8（又称为 JDK8）是 Java 语言开发的一个重要版本，于2014年发布。 JDK8 可以说是里程碑式的版本，提供了很多的新功能，支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。 本文仅涉及编程开发中常用的特性 。  官网：JDK8新功能  函数式编程JDK8 提供了函数式编程支持，不再是单纯的面对对象。 函数编程语言 最重要的基础是λ">
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.3k</span>
+                <span title="本文字数">4.3k</span>
               
 
               
@@ -669,7 +669,7 @@
 <li><strong><code>数据源</code></strong> : 流的来源。 可以是集合，数组，I/O channel， 产生器generator 等。</li>
 <li><strong><code>聚合操作</code></strong> : 类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。和以前的Collection操作不同， Stream操作还有两个基础的特征：<ul>
 <li><strong><code>Pipelining</code></strong> : 中间操作都会返回流对象本身。 这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。</li>
-<li><strong><code>内部迭代</code></strong> ： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做外部迭代。Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</li>
+<li><strong><code>内部迭代</code></strong> ： 以前对集合遍历都是通过 Iterator 或者 For-Each 的方式, 显式的在集合外部进行迭代， 这叫做外部迭代。Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</li>
 </ul>
 </li>
 </ul>
@@ -740,6 +740,73 @@
 </tr>
 </tbody>
 </table>
+<h1 id="Date-Time-API"><a href="#Date-Time-API" class="headerlink" title="Date-Time API"></a>Date-Time API</h1><p>JDK8 提供了 <code>java.time包</code> 来完善对日期和时间的处理，遵循 <code>JSR310</code> 规范， 其是建立在 <code>Joda-Time</code> 基础上的。</p>
+<blockquote>
+<p>JDK8 之前，对于处理日期时间 API 相对糟糕，项目开发往往重度依赖第三方类库，如 <code>Joda-Time</code> 。</p>
+<p><strong>新的 API可以减轻工具类对第三方库的依赖，但不能替换旧的 API 。</strong></p>
+</blockquote>
+<p><strong>JDK8之前的日期和时间处理 : </strong></p>
+<ul>
+<li><p><code>java.util.Date</code> : 承载日期和时间信息。</p>
+</li>
+<li><p><code>java.util.Calendar</code> : 对日期和时间进行操作。</p>
+</li>
+<li><p><code>java.text.DateFormat</code> : 格式化和分析日期和时间字符串。</p>
+<blockquote>
+<p>下文皆以最常见的 <code>SimpleDateFormat</code>  为例说明。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>槽点最多的 Java API : </strong></p>
+<ul>
+<li><p><code>Date</code> , <code>Calendar</code> , <code>SimpleDateFormat</code> 所有属性都是可变的。</p>
+<blockquote>
+<p>1) 线程不安全 , 2) 重复计算时不能复用，只能新建对象。</p>
+</blockquote>
+</li>
+<li><p><code>Date</code> , <code>Calendar</code> 操作不人性化，而且 <code>Calendar API</code> 是 IBM 捐的，所以设计不一致。</p>
+<blockquote>
+<p>1) 月份都是从 0 开始。2) <code>Date</code> 年是从 1900 开始的。 </p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LocalDate nowDate = LocalDate.now();</span><br><span class="line">System.out.println(nowDate); <span class="comment">// 2019-05-14</span></span><br><span class="line">System.out.println(nowDate.getYear() + <span class="string">"-"</span> + nowDate.getMonthValue() + <span class="string">"-"</span> + nowDate.getDayOfMonth()); <span class="comment">// 2019-5-14</span></span><br><span class="line"></span><br><span class="line">LocalDate customDate = LocalDate.of(<span class="number">9102</span>, Month.JANUARY, <span class="number">1</span>);</span><br><span class="line">System.out.println(customDate); <span class="comment">// 9102-01-01</span></span><br></pre></td></tr></table></figure>
+<h2 id="新增-API"><a href="#新增-API" class="headerlink" title="新增 API"></a>新增 API</h2><p>这里这只列举部分常用的 API，其他会在功能性中补充。</p>
+<table>
+<thead>
+<tr>
+<th>涉及</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>LocalDate</code></strong></td>
+<td>LocalDate 是一个不可变的类，它表示日期，默认格式是 <code>yyyy-MM-dd</code> 。</td>
+</tr>
+<tr>
+<td><strong><code>LocalTime</code></strong></td>
+<td>LocalTime 是一个不可变的类，它的实例代表可读格式的时间，默认格式是 <code>hh:mm:ss.zzz</code> 。</td>
+</tr>
+<tr>
+<td><strong><code>LocalDateTime</code></strong></td>
+<td>LocalDateTime 是一个不可变的类，它表示一组日期-时间，默认格式是 <code>yyyy-MM-ddTHH-mm-ss.zzz</code> 。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="LocalDate"><a href="#LocalDate" class="headerlink" title="LocalDate"></a><code>LocalDate</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * LocalDate 是一个不可变的类，它表示日期，默认格式是 yyyy-MM-dd</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LocalDate</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  LocalDate nowDate = LocalDate.now();</span><br><span class="line">  System.out.println(nowDate); <span class="comment">// 2019-05-14</span></span><br><span class="line">  System.out.println(nowDate.getYear() + <span class="string">"-"</span> + nowDate.getMonthValue() + <span class="string">"-"</span> + nowDate.getDayOfMonth()); <span class="comment">// 2019-5-14</span></span><br><span class="line"></span><br><span class="line">  LocalDate customDate = LocalDate.of(<span class="number">9102</span>, Month.JANUARY, <span class="number">1</span>);</span><br><span class="line">  System.out.println(customDate); <span class="comment">// 9102-01-01</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="LocalTime"><a href="#LocalTime" class="headerlink" title="LocalTime"></a><code>LocalTime</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * LocalTime 是一个不可变的类，它的实例代表可读格式的时间，默认格式是 hh:mm:ss.zzz</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LocalTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    LocalTime nowTime = LocalTime.now();</span><br><span class="line">    System.out.println(nowTime); <span class="comment">// 11:14:47.718</span></span><br><span class="line">    System.out.println(nowTime.getHour() + <span class="string">":"</span> + nowTime.getMinute() + <span class="string">":"</span> + nowTime.getSecond()); <span class="comment">// 11:18:32</span></span><br><span class="line"></span><br><span class="line">    LocalTime customTime = LocalTime.of(<span class="number">11</span>, <span class="number">2</span>, <span class="number">33</span>);</span><br><span class="line">    System.out.println(customTime);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a><code>LocalDateTime</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * LocalDateTime 是一个不可变的类，它表示一组日期-时间，默认格式是 yyyy-MM-ddTHH-mm-ss.zzz</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LocalDateTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    LocalDateTime nowDateTime = LocalDateTime.now();</span><br><span class="line">    System.out.println(nowDateTime); <span class="comment">// 2019-05-14T11:21:27.766</span></span><br><span class="line">    System.out.println(nowDateTime.getYear() + <span class="string">"-"</span> + nowDateTime.getMonthValue() + <span class="string">"-"</span> + nowDateTime.getDayOfMonth()); <span class="comment">//2019-5-14</span></span><br><span class="line"></span><br><span class="line">    LocalDate customDate = LocalDate.of(<span class="number">9102</span>, Month.JANUARY, <span class="number">1</span>);</span><br><span class="line">    LocalTime customTime = LocalTime.of(<span class="number">11</span>, <span class="number">2</span>, <span class="number">33</span>);</span><br><span class="line">    LocalDateTime customDateTime = LocalDateTime.of(customDate, customTime);</span><br><span class="line">    System.out.println(customDateTime); <span class="comment">// 9102-01-01T11:02:33</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="格式化和解析"><a href="#格式化和解析" class="headerlink" title="格式化和解析"></a>格式化和解析</h2><p>JDK8 新增了 <code>java.time.format.DateTimeFormatter</code> 类，负责提供格式化信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">formatAndParse</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// format</span></span><br><span class="line">  LocalDate date = LocalDate.now();</span><br><span class="line">  System.out.println(date.format(DateTimeFormatter.BASIC_ISO_DATE));<span class="comment">// 20190514</span></span><br><span class="line">  System.out.println(date.format(DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd"</span>)));<span class="comment">// 2019-05-14</span></span><br><span class="line"></span><br><span class="line">  LocalTime time = LocalTime.now();</span><br><span class="line">  System.out.println(time.format(DateTimeFormatter.ofPattern(<span class="string">"HH:mm:ss"</span>)));<span class="comment">// 13:54:31</span></span><br><span class="line"></span><br><span class="line">  LocalDateTime dateTime = LocalDateTime.of(date, time);</span><br><span class="line">  System.out.println(dateTime.format(DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>))); <span class="comment">// 2019-05-14 13:54:31</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// parse</span></span><br><span class="line">  LocalDateTime dt = LocalDateTime.parse(<span class="string">"2019-05-14 13:54:31"</span>, DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>));</span><br><span class="line">  System.out.println(dt); <span class="comment">// 2019-05-14T13:54:31</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="处理和分析"><a href="#处理和分析" class="headerlink" title="处理和分析"></a>处理和分析</h2><p>新的 API 中内置了许多工具方法，可以分析和处理日期和时间。</p>
+<blockquote>
+<p><strong>注意</strong> ：这些类都是不可变动的，处理后是返回一个新的对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dealAndAnalyse</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    LocalDate today = LocalDate.now(); <span class="comment">// 2019-05-14</span></span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"当前是否是闰年: "</span> + today.isLeapYear()); <span class="comment">// 当前是否是闰年: false</span></span><br><span class="line">    System.out.println(today.isAfter(LocalDate.of(<span class="number">9102</span>,<span class="number">1</span>,<span class="number">1</span>))); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// plus and minus : Day, Week, Month, Year</span></span><br><span class="line">    System.out.println(<span class="string">"一天后: "</span> + today.plusDays(<span class="number">1</span>)); <span class="comment">// 一天后: 2019-05-15</span></span><br><span class="line">  	System.out.println(today); <span class="comment">// 2019-05-15</span></span><br><span class="line">    System.out.println(<span class="string">"一天前: "</span> + today.minusDays(<span class="number">1</span>)); <span class="comment">// 一天前: 2019-05-13</span></span><br><span class="line"></span><br><span class="line">    LocalDate dt = LocalDate.parse(<span class="string">"2020-03-31"</span>, DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd"</span>));</span><br><span class="line">    System.out.println(dt.minusMonths(<span class="number">1</span>));<span class="comment">// 2020-02-29</span></span><br><span class="line">    System.out.println(dt.minusYears(<span class="number">1</span>).minusMonths(<span class="number">1</span>));<span class="comment">// 2019-02-28</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// lastDayOfMonth, lastDayOfYear</span></span><br><span class="line">    LocalDate lastDayOfYear = today.with(TemporalAdjusters.lastDayOfYear());</span><br><span class="line">    System.out.println(lastDayOfYear); <span class="comment">// 2019-12-31</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 时间间隔</span></span><br><span class="line">    Period period = today.until(lastDayOfYear);</span><br><span class="line">    System.out.println(period.getDays()); <span class="comment">// 17</span></span><br><span class="line">    System.out.println(period.getMonths()); <span class="comment">// 7</span></span><br><span class="line">    System.out.println(period.getYears()); <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="支持旧-API"><a href="#支持旧-API" class="headerlink" title="支持旧 API"></a>支持旧 API</h2><p>JDK8 新增了一个 <code>java.time.Instant</code> 类，借助它可以完成 <code>旧API</code> 和 <code>新API</code> 的相互转换。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">old2new</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// Date,Calendar  -&gt; Instant -&gt; LocalDateTime</span></span><br><span class="line">  Instant timestamp1 = <span class="keyword">new</span> Date().toInstant();</span><br><span class="line">  Instant ts1 = Calendar.getInstance().toInstant();</span><br><span class="line"></span><br><span class="line">  LocalDateTime dateTime1 = LocalDateTime.ofInstant(timestamp1, ZoneId.systemDefault());</span><br><span class="line">  LocalDate date1 = dateTime1.toLocalDate();</span><br><span class="line">  LocalTime time1 = dateTime1.toLocalTime();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">new2old</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// LocalDateTime,LocalDate -&gt; Instant -&gt; Date</span></span><br><span class="line">  Instant timestamp2 = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant();</span><br><span class="line">  Instant ts2 = LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();</span><br><span class="line"></span><br><span class="line">  Date date2 = Date.from(timestamp2); </span><br><span class="line">  Date d2 = Date.from(ts2); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -912,6 +979,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -928,6 +997,8 @@
                     
                   
                     
+                    
+                      
                     
                       
                     
@@ -1094,7 +1165,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式编程"><span class="nav-number">1.</span> <span class="nav-text">函数式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda-表达式"><span class="nav-number">1.1.</span> <span class="nav-text">Lambda 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法格式"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量作用域"><span class="nav-number">1.1.2.</span> <span class="nav-text">变量作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法引用"><span class="nav-number">1.2.</span> <span class="nav-text">方法引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法格式-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">语法格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式接口"><span class="nav-number">1.3.</span> <span class="nav-text">函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用函数式接口"><span class="nav-number">1.3.1.</span> <span class="nav-text">常用函数式接口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认方法"><span class="nav-number">2.</span> <span class="nav-text">默认方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#forEach-解析"><span class="nav-number">2.1.</span> <span class="nav-text">forEach 解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stream-API"><span class="nav-number">3.</span> <span class="nav-text">Stream API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream种类"><span class="nav-number">3.1.</span> <span class="nav-text">Stream种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间操作"><span class="nav-number">3.2.</span> <span class="nav-text">中间操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终操作"><span class="nav-number">3.3.</span> <span class="nav-text">最终操作</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式编程"><span class="nav-number">1.</span> <span class="nav-text">函数式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda-表达式"><span class="nav-number">1.1.</span> <span class="nav-text">Lambda 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法格式"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量作用域"><span class="nav-number">1.1.2.</span> <span class="nav-text">变量作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法引用"><span class="nav-number">1.2.</span> <span class="nav-text">方法引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法格式-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">语法格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式接口"><span class="nav-number">1.3.</span> <span class="nav-text">函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用函数式接口"><span class="nav-number">1.3.1.</span> <span class="nav-text">常用函数式接口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认方法"><span class="nav-number">2.</span> <span class="nav-text">默认方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#forEach-解析"><span class="nav-number">2.1.</span> <span class="nav-text">forEach 解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stream-API"><span class="nav-number">3.</span> <span class="nav-text">Stream API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream种类"><span class="nav-number">3.1.</span> <span class="nav-text">Stream种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间操作"><span class="nav-number">3.2.</span> <span class="nav-text">中间操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终操作"><span class="nav-number">3.3.</span> <span class="nav-text">最终操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Date-Time-API"><span class="nav-number">4.</span> <span class="nav-text">Date-Time API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新增-API"><span class="nav-number">4.1.</span> <span class="nav-text">新增 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalDate"><span class="nav-number">4.1.1.</span> <span class="nav-text">LocalDate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalTime"><span class="nav-number">4.1.2.</span> <span class="nav-text">LocalTime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalDateTime"><span class="nav-number">4.1.3.</span> <span class="nav-text">LocalDateTime</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化和解析"><span class="nav-number">4.2.</span> <span class="nav-text">格式化和解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理和分析"><span class="nav-number">4.3.</span> <span class="nav-text">处理和分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持旧-API"><span class="nav-number">4.4.</span> <span class="nav-text">支持旧 API</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1136,7 +1207,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">46k</span>
   
 
   
