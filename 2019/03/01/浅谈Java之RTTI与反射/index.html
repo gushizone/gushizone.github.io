@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="反射机制 是 Java 提供的一种让我们在运行时识别对象类型的方式。 通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-17T06:52:52.909Z">
+<meta property="og:updated_time" content="2019-05-17T08:31:45.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Java之RTTI与反射">
 <meta name="twitter:description" content="反射机制 是 Java 提供的一种让我们在运行时识别对象类型的方式。 通过反射可以进行更加动态的编程，这也正是框架技术十分喜欢使用的方式，了解反射后，也会对 Java 有更加深刻的认识。">
@@ -640,6 +640,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Foo foo = <span class="keyword">new</span> Foo();</span><br><span class="line">Class clazz = Foo.class;</span><br><span class="line"></span><br><span class="line">Method method1 = clazz.getMethod(<span class="string">"print"</span>, String.class, String.class);</span><br><span class="line">method1.invoke(foo, <span class="string">"abc"</span>, <span class="string">"def"</span>);<span class="comment">// abc def</span></span><br><span class="line"></span><br><span class="line">Method method2 = clazz.getMethod(<span class="string">"print"</span>, <span class="keyword">new</span> Class[]&#123;Integer.class, Integer.class&#125;);</span><br><span class="line">method2.invoke(foo, <span class="number">12</span>, <span class="number">21</span>);<span class="comment">// 12 21</span></span><br><span class="line"></span><br><span class="line">Method method3 = clazz.getDeclaredMethod(<span class="string">"print"</span>);</span><br><span class="line">method3.invoke(foo);<span class="comment">// I'm Foo!</span></span><br></pre></td></tr></table></figure>
 <h2 id="字段反射"><a href="#字段反射" class="headerlink" title="字段反射"></a>字段反射</h2><p>反射字段可以让我们直接访问和操作字段，下面通过两个示例来看一下。</p>
 <p>提供模拟数据：</p>
+<blockquote>
+<p>常见的数据源 : xml , json 等文件。</p>
+</blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.put(<span class="string">"username"</span>, <span class="string">"张三"</span>);</span><br><span class="line">map.put(<span class="string">"age"</span>, <span class="number">10</span>);</span><br><span class="line">map.put(<span class="string">"birthdate"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">map.put(<span class="string">"salary"</span>, <span class="keyword">new</span> BigDecimal(<span class="string">"123.321"</span>));</span><br></pre></td></tr></table></figure>
 <h3 id="直接反射"><a href="#直接反射" class="headerlink" title="直接反射"></a>直接反射</h3><p>反射会进行访问域检查，一般只能访问到 public 域，可以使用 <code>setAccessible(true)</code> 来跳过检查。</p>
 <p>虽然不会有什么影响，但 <strong>一般还是不推荐使用这种方式</strong> 。</p>
@@ -822,7 +825,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -942,7 +945,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">30</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1077,7 +1090,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">46k</span>
+    <span title="站点总字数">50k</span>
   
 
   

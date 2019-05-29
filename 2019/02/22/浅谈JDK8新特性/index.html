@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="Java8（又称为 JDK8）是 Java 语言开发的一个重要版本，于2014年发布。 JDK8 可以说是里程碑式的版本，提供了很多的新功能，支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。 本文仅涉及编程开发中常用的特性 。  官网：JDK8新功能  函数式编程JDK8 提供了函数式编程支持，不再是单纯的面对对象。 函数编程语言 最重要的基础是λ">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-15T16:14:55.417Z">
+<meta property="og:updated_time" content="2019-05-20T09:01:32.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈JDK8新特性">
 <meta name="twitter:description" content="Java8（又称为 JDK8）是 Java 语言开发的一个重要版本，于2014年发布。 JDK8 可以说是里程碑式的版本，提供了很多的新功能，支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。 本文仅涉及编程开发中常用的特性 。  官网：JDK8新功能  函数式编程JDK8 提供了函数式编程支持，不再是单纯的面对对象。 函数编程语言 最重要的基础是λ">
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">4.3k</span>
+                <span title="本文字数">4.8k</span>
               
 
               
@@ -534,7 +534,7 @@
 <p><strong><code>函数编程语言</code></strong> 最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入和输出。</p>
 <p>JDK8 提供了一些特性来支持函数式编程：<strong><code>Lambda表达式</code> , <code>函数式接口</code> , <code>方法引用</code></strong> 等。</p>
 <blockquote>
-<p>这三者具有紧密联系，需要结合理解。 <code>默认方法</code> 和 <code>stream API</code> 及 <code>增强API</code> 则另行说明。</p>
+<p>这三者具有紧密联系，需要结合理解。 <code>默认方法</code> 和 <code>stream API</code> 及 <code>增强API</code> 等则另行说明。</p>
 </blockquote>
 <ul>
 <li><code>函数式接口</code> 就是只有一个抽象方法的接口。</li>
@@ -546,7 +546,7 @@
 <blockquote>
 <p><code>lambda表达式</code>  又名：<code>闭包</code> 、 <code>匿名方法</code> 。</p>
 </blockquote>
-<h3 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 格式一</span><br><span class="line">(parameters) -&gt; expression </span><br><span class="line">// 格式二</span><br><span class="line">(parameters) -&gt;&#123; statements; &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式一</span></span><br><span class="line">(parameters) -&gt; expression </span><br><span class="line"><span class="comment">// 格式二</span></span><br><span class="line">(parameters) -&gt;&#123; statements; &#125;</span><br></pre></td></tr></table></figure>
 <p><strong>语法特征:</strong></p>
 <ul>
 <li>可选的参数类型声明：不需要声明参数类型，编译器可以统一识别参数值。</li>
@@ -674,72 +674,115 @@
 </li>
 </ul>
 </blockquote>
-<p>得益于 <code>默认方法</code> ， <code>Stream方法</code> 被整合到 <code>Collection接口</code> 中。现在可以十分简洁高效的方式操作元素集合。</p>
+<p>得益于 <code>默认方法</code> ， <code>Stream方法</code> 被整合到了 <code>Collection接口</code> 中。现在可以使用类似 SQL 方式操作元素集合，十分高效简洁。</p>
 <p>Stream操作 的一般流程 : <strong><code>转换为Stream</code> -&gt; <code>中间操作</code> -&gt; <code>最终操作</code></strong> 。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strings = Arrays.asList(<span class="string">"abc"</span>, <span class="string">""</span>, <span class="string">"bc"</span>, <span class="string">"efg"</span>, <span class="string">"abc"</span>, <span class="string">""</span>, <span class="string">"jkl"</span>);</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; filtered = strings.stream()</span><br><span class="line">    .filter(string -&gt; !string.isEmpty())</span><br><span class="line">    .distinct()</span><br><span class="line">    .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">System.out.println(filtered);</span><br><span class="line"><span class="comment">// [abc, bc, efg, jkl]</span></span><br></pre></td></tr></table></figure>
 <h2 id="Stream种类"><a href="#Stream种类" class="headerlink" title="Stream种类"></a>Stream种类</h2><p>JDK8 中，集合接口提供了两种方法生成流。</p>
-<ul>
-<li><strong>stream()</strong> : 为集合创建串行流。</li>
-<li><strong>parallelStream()</strong> : 为集合创建并行流。</li>
-</ul>
-<h2 id="中间操作"><a href="#中间操作" class="headerlink" title="中间操作"></a>中间操作</h2><table>
+<table>
 <thead>
 <tr>
-<th>Stream 常用方法</th>
+<th>涉及方法</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>filter</code></td>
-<td>筛选出元素。例如: <code>.filter(String::isEmpty)</code> 为筛选出所有空字符串。</td>
+<td><strong><code>stream()</code></strong></td>
+<td>为集合创建串行流。</td>
 </tr>
 <tr>
-<td><code>distinct</code></td>
-<td>去重，通过 <code>equals方法</code> 判断。</td>
+<td><strong><code>parallelStream()</code></strong></td>
+<td>为集合创建并行流，相当于多线程操作。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="中间操作"><a href="#中间操作" class="headerlink" title="中间操作"></a>中间操作</h2><table>
+<thead>
+<tr>
+<th>涉及</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>filter(..)</code></td>
+<td>筛选出元素。</td>
+<td><code>.filter(String::isEmpty)</code> 为筛选出所有空字符串。</td>
 </tr>
 <tr>
-<td><code>map</code></td>
-<td>映射每个元素到对应的结果。例如:  <code>.map(i -&gt; i * i)</code> 为获取获取对应的平方数。</td>
+<td><code>map(..)</code></td>
+<td>映射每个元素到对应的结果。</td>
+<td><code>.map(i -&gt; i * i)</code> 为获取获取对应的平方数。</td>
 </tr>
 <tr>
-<td><code>sorted</code></td>
+<td><code>sorted()</code> / <code>sorted(..)</code></td>
 <td>排序（升序），通过 <code>Comparable接口</code> 判断。</td>
+<td><code>.sorted(Comparator.reverseOrder())</code>  为降序，可传入 lambda表达式。</td>
 </tr>
 <tr>
-<td><code>count</code></td>
+<td><code>distinct()</code></td>
+<td>通过 <code>equals方法</code> 判断。</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>count()</code></td>
 <td>统计个数。</td>
+<td>-</td>
 </tr>
 <tr>
-<td><code>collect</code></td>
-<td>实现归约操作，即转换类型。</td>
+<td><strong><code>collect(..)</code></strong></td>
+<td>实现归约操作，即转换类型。一般为最终操作，配合 <code>Collectors</code> 使用。</td>
+<td><code>.collect(Collectors.toList())</code> 为归约为列表</td>
 </tr>
 </tbody>
 </table>
 <h2 id="最终操作"><a href="#最终操作" class="headerlink" title="最终操作"></a>最终操作</h2><p>常见的 <code>最终操作</code> 是 <code>归约操作</code> 。</p>
-<p>Collectors 类实现了很多归约操作，例如将流转换成集合和聚合元素。</p>
 <table>
 <thead>
 <tr>
-<th>Collectors常用方法</th>
+<th>涉及</th>
 <th>说明</th>
+<th>示例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>toList</code> / <code>toSet</code> / <code>toMap</code></td>
-<td>转换成集合。</td>
-</tr>
-<tr>
-<td><code>joining</code></td>
-<td>转换成字符串。</td>
-</tr>
-<tr>
-<td><code>groupingBy</code></td>
-<td>分组，根据函数式接口的返回值分组。</td>
+<td><code>toArray()</code> / <code>toArray(..)</code></td>
+<td>转换为数组。</td>
+<td><code>.toArray(String[]::new)</code></td>
 </tr>
 </tbody>
 </table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// 求最大值 3</span></span><br><span class="line">  List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">  Integer maxValue = list.stream().collect(Collectors.collectingAndThen(Collectors.maxBy((a, b) -&gt; a - b), Optional::get));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 求最小值 1</span></span><br><span class="line">  Integer minValue = list.stream().collect(Collectors.collectingAndThen(Collectors.minBy((a, b) -&gt; a - b), Optional::get));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 求和 6</span></span><br><span class="line">  Integer sumValue = list.stream().collect(Collectors.summingInt(item -&gt; item));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 求平均值 2.0</span></span><br><span class="line">  Double avg = list.stream().collect(Collectors.averagingDouble(x -&gt; x));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Collectors"><a href="#Collectors" class="headerlink" title="Collectors"></a><code>Collectors</code></h3><p>Collectors 类实现了很多归约操作，例如将流转换成集合和聚合元素。</p>
+<table>
+<thead>
+<tr>
+<th>涉及</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toList()</code> / <code>toSet()</code> / <code>toMap()</code> / <code>toCollection(..)</code></td>
+<td>转换成集合。</td>
+<td><code>Collectors.toCollection(HashSet::new)</code></td>
+</tr>
+<tr>
+<td><code>joining(..)</code></td>
+<td>转换成字符串。</td>
+<td><code>Collectors.joining(&quot;, &quot;)</code> / <code>Collectors.joining(&quot;, &quot;, &quot;{&quot;, &quot;}&quot;)</code></td>
+</tr>
+<tr>
+<td><code>groupingBy(..)</code></td>
+<td>分组，根据函数式接口的返回值分组。</td>
+<td><code>Collectors.groupingBy(item -&gt; item.getAge() &gt;= 18)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="统计分析-SummaryStatistics"><a href="#统计分析-SummaryStatistics" class="headerlink" title="统计分析 : SummaryStatistics"></a>统计分析 : <code>SummaryStatistics</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 统计</span></span><br><span class="line"><span class="comment"> * 另外，一些产生统计结果的收集器也非常有用。</span></span><br><span class="line"><span class="comment"> * 它们主要用于int、double、long等基本类型上，</span></span><br><span class="line"><span class="comment"> * 它们可以用来产生类似如下的统计结果。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">  IntSummaryStatistics stats = numbers.stream().mapToInt((x) -&gt; x).summaryStatistics();</span><br><span class="line"></span><br><span class="line">  System.out.println(<span class="string">"列表中最大的数 : "</span> + stats.getMax());</span><br><span class="line">  System.out.println(<span class="string">"列表中最小的数 : "</span> + stats.getMin());</span><br><span class="line">  System.out.println(<span class="string">"所有数之和 : "</span> + stats.getSum());</span><br><span class="line">  System.out.println(<span class="string">"平均数 : "</span> + stats.getAverage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Date-Time-API"><a href="#Date-Time-API" class="headerlink" title="Date-Time API"></a>Date-Time API</h1><p>JDK8 提供了 <code>java.time包</code> 来完善对日期和时间的处理，遵循 <code>JSR310</code> 规范， 其是建立在 <code>Joda-Time</code> 基础上的。</p>
 <blockquote>
 <p>JDK8 之前，对于处理日期时间 API 相对糟糕，项目开发往往重度依赖第三方类库，如 <code>Joda-Time</code> 。</p>
@@ -952,7 +995,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1072,7 +1115,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">30</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1165,7 +1218,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式编程"><span class="nav-number">1.</span> <span class="nav-text">函数式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda-表达式"><span class="nav-number">1.1.</span> <span class="nav-text">Lambda 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法格式"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量作用域"><span class="nav-number">1.1.2.</span> <span class="nav-text">变量作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法引用"><span class="nav-number">1.2.</span> <span class="nav-text">方法引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法格式-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">语法格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式接口"><span class="nav-number">1.3.</span> <span class="nav-text">函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用函数式接口"><span class="nav-number">1.3.1.</span> <span class="nav-text">常用函数式接口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认方法"><span class="nav-number">2.</span> <span class="nav-text">默认方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#forEach-解析"><span class="nav-number">2.1.</span> <span class="nav-text">forEach 解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stream-API"><span class="nav-number">3.</span> <span class="nav-text">Stream API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream种类"><span class="nav-number">3.1.</span> <span class="nav-text">Stream种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间操作"><span class="nav-number">3.2.</span> <span class="nav-text">中间操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终操作"><span class="nav-number">3.3.</span> <span class="nav-text">最终操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Date-Time-API"><span class="nav-number">4.</span> <span class="nav-text">Date-Time API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新增-API"><span class="nav-number">4.1.</span> <span class="nav-text">新增 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalDate"><span class="nav-number">4.1.1.</span> <span class="nav-text">LocalDate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalTime"><span class="nav-number">4.1.2.</span> <span class="nav-text">LocalTime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalDateTime"><span class="nav-number">4.1.3.</span> <span class="nav-text">LocalDateTime</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化和解析"><span class="nav-number">4.2.</span> <span class="nav-text">格式化和解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理和分析"><span class="nav-number">4.3.</span> <span class="nav-text">处理和分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持旧-API"><span class="nav-number">4.4.</span> <span class="nav-text">支持旧 API</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式编程"><span class="nav-number">1.</span> <span class="nav-text">函数式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda-表达式"><span class="nav-number">1.1.</span> <span class="nav-text">Lambda 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法格式"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量作用域"><span class="nav-number">1.1.2.</span> <span class="nav-text">变量作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法引用"><span class="nav-number">1.2.</span> <span class="nav-text">方法引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法格式-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">语法格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式接口"><span class="nav-number">1.3.</span> <span class="nav-text">函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用函数式接口"><span class="nav-number">1.3.1.</span> <span class="nav-text">常用函数式接口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认方法"><span class="nav-number">2.</span> <span class="nav-text">默认方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#forEach-解析"><span class="nav-number">2.1.</span> <span class="nav-text">forEach 解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stream-API"><span class="nav-number">3.</span> <span class="nav-text">Stream API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream种类"><span class="nav-number">3.1.</span> <span class="nav-text">Stream种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间操作"><span class="nav-number">3.2.</span> <span class="nav-text">中间操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终操作"><span class="nav-number">3.3.</span> <span class="nav-text">最终操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collectors"><span class="nav-number">3.3.1.</span> <span class="nav-text">Collectors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计分析-SummaryStatistics"><span class="nav-number">3.3.2.</span> <span class="nav-text">统计分析 : SummaryStatistics</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Date-Time-API"><span class="nav-number">4.</span> <span class="nav-text">Date-Time API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新增-API"><span class="nav-number">4.1.</span> <span class="nav-text">新增 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalDate"><span class="nav-number">4.1.1.</span> <span class="nav-text">LocalDate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalTime"><span class="nav-number">4.1.2.</span> <span class="nav-text">LocalTime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalDateTime"><span class="nav-number">4.1.3.</span> <span class="nav-text">LocalDateTime</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化和解析"><span class="nav-number">4.2.</span> <span class="nav-text">格式化和解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理和分析"><span class="nav-number">4.3.</span> <span class="nav-text">处理和分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持旧-API"><span class="nav-number">4.4.</span> <span class="nav-text">支持旧 API</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1207,7 +1260,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">46k</span>
+    <span title="站点总字数">50k</span>
   
 
   
