@@ -149,19 +149,19 @@
   </script>
 
 
-  <meta name="description" content="javap : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下javap的简单使用。     认识 javap众所周知， *.java 文件会被 java编译器转变为 *.class 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程序多">
+  <meta name="description" content="javap : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下 javap 的简单使用。     认识 javap众所周知， *.java 文件会被 java编译器转变为 *.class 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程">
 <meta name="keywords" content="Java,JDK,javap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javap: 了解编译器的内部工作">
 <meta property="og:url" content="https://gushizone.github.io/2019/06/01/javap-了解编译器的工作/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
-<meta property="og:description" content="javap : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下javap的简单使用。     认识 javap众所周知， *.java 文件会被 java编译器转变为 *.class 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程序多">
+<meta property="og:description" content="javap : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下 javap 的简单使用。     认识 javap众所周知， *.java 文件会被 java编译器转变为 *.class 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/IDEA_javap.png">
-<meta property="og:updated_time" content="2019-06-01T17:53:41.248Z">
+<meta property="og:updated_time" content="2019-06-01T18:34:40.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javap: 了解编译器的内部工作">
-<meta name="twitter:description" content="javap : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下javap的简单使用。     认识 javap众所周知， *.java 文件会被 java编译器转变为 *.class 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程序多">
+<meta name="twitter:description" content="javap : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下 javap 的简单使用。     认识 javap众所周知， *.java 文件会被 java编译器转变为 *.class 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/IDEA_javap.png">
 
 
@@ -528,10 +528,10 @@
       
 
       
-        <p><strong><code>javap</code></strong> : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下javap的简单使用。    </p>
+        <p><strong><code>javap</code></strong> : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下 javap 的简单使用。    </p>
 <h1 id="认识-javap"><a href="#认识-javap" class="headerlink" title="认识 javap"></a>认识 javap</h1><p>众所周知， <code>*.java</code> 文件会被 java编译器转变为 <code>*.class</code> 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程序多平台兼容的关键。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*.java -&gt; *.class -&gt; 机器指令</span><br></pre></td></tr></table></figure>
-<p>需要知道的是编译器并不是简单的去除所不必要的东西 (如注释，换行等)，再转变为 16进制文件，而是做了编译器优化，这些行为是无法直接知道的。虽然字节码也是可以被解读的，但这对人解读并不友好，而使用 JDK 提供的 javap 就可以将不可读字节码转换为对应的可读指令。</p>
+<p>需要知道的是，编译器并不是简单的去除所不必要的东西 (如注释，换行等)，再转变为 16进制文件，而是做了编译器优化，这些行为是无法直接知道的。虽然字节码也是可以被解读的，但这对人来说并不友好，而使用 JDK 提供的 javap 就可以将不可读字节码转换为对应的可读指令。</p>
 <h2 id="JDK-目录结构"><a href="#JDK-目录结构" class="headerlink" title="JDK 目录结构"></a>JDK 目录结构</h2><p>从 JDK 目录结构可以看出 : <strong>JDK = JRE + Tools&amp;Tool APIs</strong> 。</p>
 <p>javap 正是 JDK 提供的开发工具之一。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── bin <span class="comment"># JDK开发工具的可执行文件</span></span><br><span class="line">│   ├── java <span class="comment"># Java解释器 : *.class -&gt; 机器指令</span></span><br><span class="line">│   ├── javac <span class="comment"># Java编译器 : *.java -&gt; *.class</span></span><br><span class="line">│   ├── javadoc <span class="comment"># API 文档生成器</span></span><br><span class="line">│   ├── javap <span class="comment"># Java class文件分解器</span></span><br><span class="line">│   └── ...</span><br><span class="line">├── include <span class="comment"># 包含C语言头文件,支持Java本地接口与Java虚拟机调试程序接口的本地编程技术</span></span><br><span class="line">├── jre <span class="comment"># 包含: JVM + 运行时的类包 + Java应用启动器</span></span><br><span class="line">└── lib <span class="comment"># 开发工具使用的归档包文件</span></span><br></pre></td></tr></table></figure>
@@ -583,7 +583,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavapTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str1 = <span class="string">"a"</span> + <span class="string">"b"</span> + <span class="string">"c"</span>;</span><br><span class="line">        String str2 = str1 + <span class="string">"dfg"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>javap</code> 是作用在 <code>*.class</code> 上的，先使用 <code>javac</code> 获得 <code>*.java</code> 对应的 <code>*.class</code> 。</p>
 <blockquote>
-<p>希望直接在 shell 中使用 JDK工具，需要配置环境变量。</p>
+<p>如果希望直接在 shell 中使用 JDK工具，需要配置环境变量。</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在java文件目录执行，会在当前目录获得.class文件</span></span><br><span class="line">$ javac JavapTest.java</span><br><span class="line"><span class="comment"># 获取对应.class文件的反编译指令</span></span><br><span class="line">$ javap -c JavapTest</span><br><span class="line"></span><br><span class="line">Compiled from <span class="string">"JavapTest.java"</span></span><br><span class="line">public class JavapTest &#123;</span><br><span class="line">  public JavapTest();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: invokespecial <span class="comment">#1                  // Method java/lang/Object."&lt;init&gt;":()V</span></span><br><span class="line">       4: <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">  public static void main(java.lang.String[]);</span><br><span class="line">    Code:</span><br><span class="line">       0: ldc           <span class="comment">#2                  // String abc</span></span><br><span class="line">       2: astore_1</span><br><span class="line">       3: new           <span class="comment">#3                  // class java/lang/StringBuilder</span></span><br><span class="line">       6: dup</span><br><span class="line">       7: invokespecial <span class="comment">#4                  // Method java/lang/StringBuilder."&lt;init&gt;":()V</span></span><br><span class="line">      10: aload_1</span><br><span class="line">      11: invokevirtual <span class="comment">#5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;</span></span><br><span class="line">      14: ldc           <span class="comment">#6                  // String dfg</span></span><br><span class="line">      16: invokevirtual <span class="comment">#5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;</span></span><br><span class="line">      19: invokevirtual <span class="comment">#7                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;</span></span><br><span class="line">      22: astore_2</span><br><span class="line">      23: <span class="built_in">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="1-编译器对字符常量拼接的优化"><a href="#1-编译器对字符常量拼接的优化" class="headerlink" title="1) 编译器对字符常量拼接的优化"></a>1) 编译器对字符常量拼接的优化</h3><p>由以下可以看出，当对字符常量的拼接时，编译器直接创建了拼接结果。</p>
@@ -678,6 +678,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/06/10/Mybatis三剑客/" rel="prev" title="Mybatis三剑客">
+                Mybatis三剑客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -747,7 +751,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -879,7 +883,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1014,7 +1024,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">54k</span>
   
 
   

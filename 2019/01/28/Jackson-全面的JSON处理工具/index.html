@@ -149,18 +149,18 @@
   </script>
 
 
-  <meta name="description" content="鉴于对 json 的需求更多，且 Jackson 对 json 和 xml 的处理方式基本相同，故 本文更侧重对 JSON 的处理 。  日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  json相关： jack">
+  <meta name="description" content="日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  注意 : jackson-dataformat-xml 是 Jackson 扩展组件，只提供了一些简单的方式操作 xml ，不适合作为操作 xml 的主力工具使用。">
 <meta name="keywords" content="Jackson,JSON,XML">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jackson: 全面的数据处理工具">
-<meta property="og:url" content="https://gushizone.github.io/2019/01/28/Jackson-全面的数据处理工具/index.html">
+<meta property="og:title" content="Jackson: 全面的JSON处理工具">
+<meta property="og:url" content="https://gushizone.github.io/2019/01/28/Jackson-全面的JSON处理工具/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
-<meta property="og:description" content="鉴于对 json 的需求更多，且 Jackson 对 json 和 xml 的处理方式基本相同，故 本文更侧重对 JSON 的处理 。  日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  json相关： jack">
+<meta property="og:description" content="日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  注意 : jackson-dataformat-xml 是 Jackson 扩展组件，只提供了一些简单的方式操作 xml ，不适合作为操作 xml 的主力工具使用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-31T13:51:18.497Z">
+<meta property="og:updated_time" content="2019-06-27T01:16:39.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jackson: 全面的数据处理工具">
-<meta name="twitter:description" content="鉴于对 json 的需求更多，且 Jackson 对 json 和 xml 的处理方式基本相同，故 本文更侧重对 JSON 的处理 。  日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  json相关： jack">
+<meta name="twitter:title" content="Jackson: 全面的JSON处理工具">
+<meta name="twitter:description" content="日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  注意 : jackson-dataformat-xml 是 Jackson 扩展组件，只提供了一些简单的方式操作 xml ，不适合作为操作 xml 的主力工具使用。">
 
 
 
@@ -168,7 +168,7 @@
 
   
   
-  <link rel="canonical" href="https://gushizone.github.io/2019/01/28/Jackson-全面的数据处理工具/">
+  <link rel="canonical" href="https://gushizone.github.io/2019/01/28/Jackson-全面的JSON处理工具/">
 
 
 
@@ -178,7 +178,7 @@
   };
 </script>
 
-  <title>Jackson: 全面的数据处理工具 | Gushi's Blog</title>
+  <title>Jackson: 全面的JSON处理工具 | Gushi's Blog</title>
   
 
 
@@ -410,7 +410,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gushizone.github.io/2019/01/28/Jackson-全面的数据处理工具/">
+    <link itemprop="mainEntityOfPage" href="https://gushizone.github.io/2019/01/28/Jackson-全面的JSON处理工具/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="孤世">
@@ -427,7 +427,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Jackson: 全面的数据处理工具
+          <h1 class="post-title" itemprop="name headline">Jackson: 全面的JSON处理工具
 
               
             
@@ -526,10 +526,10 @@
       
 
       
-        <blockquote>
-<p>鉴于对 json 的需求更多，且 Jackson 对 json 和 xml 的处理方式基本相同，故 <strong>本文更侧重对 JSON 的处理</strong> 。</p>
+        <p>日常开发中常需要  <code>Json</code> 、 <code>Java</code> 、 <code>Xml</code>之间的互相转换，相关 <strong>数据处理工具（data-processing tools）</strong> 有很多，鉴于 <code>Jackson</code> 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。</p>
+<blockquote>
+<p><strong>注意</strong> : <code>jackson-dataformat-xml</code> 是 Jackson 扩展组件，只提供了一些简单的方式操作 xml ，不适合作为操作 xml 的主力工具使用。</p>
 </blockquote>
-<p>日常开发中常需要  <code>Json</code> 、 <code>Java</code> 、 <code>Xml</code>之间的互相转换，相关 <strong>数据处理工具（data-processing tools）</strong> 有很多，鉴于 <code>Jackson</code> 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。</p>
 <ul>
 <li><a href="https://github.com/FasterXML/jackson-databind" target="_blank" rel="noopener">json相关： jackson-databind</a></li>
 <li><a href="https://github.com/FasterXML/jackson-dataformat-xml" target="_blank" rel="noopener">xml 相关：jackson-dataformat-xml</a></li>
@@ -604,7 +604,7 @@
 <p>由以上的代码，可以看出单纯的 流操作 比较繁杂，操作起来有些得不偿失。</p>
 <p>正如之前所说，这三种方式并不是相互孤立的，可以相互配合使用。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 流式操作配合数据绑定</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setUsername(<span class="string">"Jack"</span>);</span><br><span class="line">    user.setAge(<span class="number">19</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// object to json</span></span><br><span class="line">    JsonFactory jsonFactory = <span class="keyword">new</span> JsonFactory();</span><br><span class="line">    JsonGenerator jsonGen = <span class="keyword">null</span>;</span><br><span class="line">    StringWriter sw = <span class="keyword">new</span> StringWriter();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        jsonGen = jsonFactory.createGenerator(sw);</span><br><span class="line"></span><br><span class="line">        ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">        objectMapper.writeValue(jsonGen, user);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (jsonGen != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                jsonGen.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println(sw.toString());</span><br><span class="line">    <span class="comment">// &#123;"username":"Jack","age":19&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    JsonParser jsonParser = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">// json to object</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        jsonParser = jsonFactory.createParser(sw.toString());</span><br><span class="line"></span><br><span class="line">        ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">        User obj = objectMapper.readValue(sw.toString(), User.class);</span><br><span class="line">        System.out.println(obj);</span><br><span class="line">        <span class="comment">// User&#123;username='Jack', age=19&#125;</span></span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (jsonParser != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                jsonParser.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="JSON-与-XML"><a href="#JSON-与-XML" class="headerlink" title="JSON 与 XML"></a>JSON 与 XML</h1><p>Jackson 支持 对 XML 的读写操作，以下是需要的 maven 依赖：</p>
+<h1 id="JSON-与-XML"><a href="#JSON-与-XML" class="headerlink" title="JSON 与 XML"></a>JSON 与 XML</h1><p>Jackson 支持 对 XML 的简单读写操作，以下是需要的 maven 依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://github.com/FasterXML/jackson-dataformat-xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.dataformat<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-dataformat-xml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>对 XML 的操作类似于 JSON，这里仅展示 JSON 与 XML 的互转。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String userJson1 = <span class="string">"&#123;\"age\":28,\"username\":\"Jack\"&#125;"</span>;</span><br><span class="line"></span><br><span class="line">    ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">    XmlMapper xmlMapper = <span class="keyword">new</span> XmlMapper();</span><br><span class="line">    StringWriter sw = <span class="keyword">new</span> StringWriter();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// json to xml</span></span><br><span class="line">        JsonNode root = objectMapper.readTree(userJson1);</span><br><span class="line">        xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);</span><br><span class="line">        String xml = xmlMapper.writeValueAsString(root);</span><br><span class="line">        System.out.println(xml);</span><br><span class="line">        <span class="comment">//  &lt;ObjectNode&gt;</span></span><br><span class="line">        <span class="comment">//    &lt;age&gt;28&lt;/age&gt;</span></span><br><span class="line">        <span class="comment">//    &lt;username&gt;Jack&lt;/username&gt;</span></span><br><span class="line">        <span class="comment">//  &lt;/ObjectNode&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// xml to json</span></span><br><span class="line">        JsonParser jsonParser = xmlMapper.getFactory().createParser(xml);</span><br><span class="line">        JsonGenerator jsonGenerator = objectMapper.getFactory().createGenerator(sw);</span><br><span class="line">        <span class="keyword">while</span> (jsonParser.nextToken() != <span class="keyword">null</span>) &#123;</span><br><span class="line">            jsonGenerator.copyCurrentEvent(jsonParser);</span><br><span class="line">        &#125;</span><br><span class="line">        jsonParser.close();</span><br><span class="line">        jsonGenerator.close();</span><br><span class="line"></span><br><span class="line">        System.out.println(sw.toString());</span><br><span class="line">        <span class="comment">// &#123;"age":"28","username":"Jack"&#125;</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -673,7 +673,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://gushizone.github.io/2019/01/28/Jackson-全面的数据处理工具/" title="Jackson: 全面的数据处理工具">https://gushizone.github.io/2019/01/28/Jackson-全面的数据处理工具/</a>
+    <a href="https://gushizone.github.io/2019/01/28/Jackson-全面的JSON处理工具/" title="Jackson: 全面的JSON处理工具">https://gushizone.github.io/2019/01/28/Jackson-全面的JSON处理工具/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -786,7 +786,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -918,7 +918,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1053,7 +1059,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">54k</span>
   
 
   

@@ -158,7 +158,7 @@
 <meta property="og:description" content="编程中常会遇到一些字符处理问题，这里来介绍一下前后台关于字符编码的问题。 常见的字符编码种类如下：    常用字符编码 描述 补充说明     ASCII 1字节，字符范围0-127，包含26个基本拉丁字母、阿拉伯数目字和英式标点符号。 只能显示现代美国英语，即使其扩展 EASCII （字符范围0-255）也只解决了部分西欧语言的显示。   ISO-8859-1 1字节，字符范围0-255，兼容">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/web_%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81.png">
-<meta property="og:updated_time" content="2019-05-31T14:08:11.220Z">
+<meta property="og:updated_time" content="2019-06-03T05:59:47.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈字符编码">
 <meta name="twitter:description" content="编程中常会遇到一些字符处理问题，这里来介绍一下前后台关于字符编码的问题。 常见的字符编码种类如下：    常用字符编码 描述 补充说明     ASCII 1字节，字符范围0-127，包含26个基本拉丁字母、阿拉伯数目字和英式标点符号。 只能显示现代美国英语，即使其扩展 EASCII （字符范围0-255）也只解决了部分西欧语言的显示。   ISO-8859-1 1字节，字符范围0-255，兼容">
@@ -504,7 +504,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.9k</span>
+                <span title="本文字数">2.1k</span>
               
 
               
@@ -566,7 +566,7 @@
 </tr>
 </tbody>
 </table>
-<h1 id="HTML-编码-解码（字符实体）"><a href="#HTML-编码-解码（字符实体）" class="headerlink" title="HTML 编码/解码（字符实体）"></a>HTML 编码/解码（字符实体）</h1><p>因为HTML语言的本身特性导致一些字符需要转换为 <code>字符实体</code> 才可使用。<strong>这实际上是常见的 <code>转义</code> 操作， 和本文所要说的的 <code>编码</code> 并不是一件事。</strong></p>
+<h1 id="HTML-编码问题"><a href="#HTML-编码问题" class="headerlink" title="HTML 编码问题"></a>HTML 编码问题</h1><p>因为HTML语言的本身特性导致一些字符需要转换为 <code>字符实体</code> 才可使用。<strong>这实际上是常见的 <code>转义</code> 操作， 和本文所要说的的 <code>编码</code> 并不是一件事。</strong></p>
 <blockquote>
 <p>在线工具：<a href="https://www.css88.com/tool/html-escape/" target="_blank" rel="noopener">HTML编码/解码</a> ，</p>
 </blockquote>
@@ -602,10 +602,10 @@
 </tr>
 </tbody>
 </table>
-<h1 id="URL-编码-解码"><a href="#URL-编码-解码" class="headerlink" title="URL 编码/解码"></a>URL 编码/解码</h1><p>URL 只能使用 <code>ASCII 字符集</code> 来通过因特网进行发送，所以 非ASCII 需要编码才可以在URL中使用。</p>
+<h1 id="URL-编码问题"><a href="#URL-编码问题" class="headerlink" title="URL 编码问题"></a>URL 编码问题</h1><p>URL 只能使用 <code>ASCII 字符集</code> 来通过因特网进行发送，所以 非ASCII 需要编码才可以在URL中使用。</p>
 <blockquote>
 <p>URL 编码使用 “%” 其后跟随两位的十六进制数来替换非 ASCII 字符。</p>
-<p>URL 不能包含空格。URL 编码通常使用 + 来替换空格。</p>
+<p>URL 不能包含空格。URL 编码通常使用 <code>+</code> 来替换空格。</p>
 </blockquote>
 <h2 id="前端编码"><a href="#前端编码" class="headerlink" title="前端编码"></a>前端编码</h2><h3 id="encodeURI-与-encodeURIComponent"><a href="#encodeURI-与-encodeURIComponent" class="headerlink" title="encodeURI() 与 encodeURIComponent()"></a><code>encodeURI()</code> 与 <code>encodeURIComponent()</code></h3><table>
 <thead>
@@ -681,7 +681,18 @@
 <p><img src="https://raw.githubusercontent.com/gushizone/developer/master/picture/web_%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81.png" alt="web_字符编码"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js : 二次编码</span></span><br><span class="line"><span class="built_in">encodeURI</span>(<span class="built_in">encodeURI</span>(paramName));</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// servlet : 二次解码</span></span><br><span class="line">URLDecoder.decode(request.getParameter(paramName), <span class="string">"UTF-8"</span>)</span><br><span class="line"><span class="comment">// struts2 : 二次解码</span></span><br><span class="line">URLDecoder.decode(URLDecoder.decode(paramName, <span class="string">"UTF-8"</span>), <span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="IDE相关"><a href="#IDE相关" class="headerlink" title="IDE相关"></a>IDE相关</h1><h2 id="IDEA-中的-Reload-与-Convert"><a href="#IDEA-中的-Reload-与-Convert" class="headerlink" title="IDEA 中的 Reload 与 Convert"></a>IDEA 中的 <code>Reload</code> 与 <code>Convert</code></h2><p>一般IDE会使用其默认设置解读文件，如果IDE的字符集和文件本身的字符集不同就会出现乱码。</p>
+<h1 id="HTTP-编码问题"><a href="#HTTP-编码问题" class="headerlink" title="HTTP 编码问题"></a>HTTP 编码问题</h1><p>理解了二次编码问题我们就可以分析和解决 get方法 乱码问题，但对于 SpringMVC 还有更方便的方法。</p>
+<blockquote>
+<p> <strong>以下只针对 SpringMVC 乱码问题</strong> 。</p>
+</blockquote>
+<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><p>修改 tomcat 配置文件 <code>conf/server.xml</code> ，添加编码和工程编码一致，推荐使用 <code>UTF-8</code> 。</p>
+<blockquote>
+<p>因为 URL 只能存在 <code>ASCII 字符集</code> ，所以浏览器默认会对汉字进行编码。</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span></span></span><br><span class="line"><span class="tag">           <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span></span></span><br><span class="line"><span class="tag">           <span class="attr">redirectPort</span>=<span class="string">"8443"</span> <span class="attr">URIEncoding</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><p>在 <code>web.xml</code> 中配置 <code>CharacterEncodingFilter</code> 即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--字符过滤器（只针对post）--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="IDE-相关"><a href="#IDE-相关" class="headerlink" title="IDE 相关"></a>IDE 相关</h1><h2 id="IDEA-中的-Reload-与-Convert"><a href="#IDEA-中的-Reload-与-Convert" class="headerlink" title="IDEA 中的 Reload 与 Convert"></a>IDEA 中的 <code>Reload</code> 与 <code>Convert</code></h2><p>一般IDE会使用其默认设置解读文件，如果IDE的字符集和文件本身的字符集不同就会出现乱码。</p>
 <blockquote>
 <p>此时可以改变编码方式，如IDEA中会出现两种方式。</p>
 </blockquote>
@@ -836,7 +847,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -968,7 +979,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1061,7 +1078,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML-编码-解码（字符实体）"><span class="nav-number">1.</span> <span class="nav-text">HTML 编码/解码（字符实体）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URL-编码-解码"><span class="nav-number">2.</span> <span class="nav-text">URL 编码/解码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端编码"><span class="nav-number">2.1.</span> <span class="nav-text">前端编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#encodeURI-与-encodeURIComponent"><span class="nav-number">2.1.1.</span> <span class="nav-text">encodeURI() 与 encodeURIComponent()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL-保留字符"><span class="nav-number">2.1.2.</span> <span class="nav-text">URL 保留字符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次编解码问题"><span class="nav-number">2.2.</span> <span class="nav-text">二次编解码问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IDE相关"><span class="nav-number">3.</span> <span class="nav-text">IDE相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA-中的-Reload-与-Convert"><span class="nav-number">3.1.</span> <span class="nav-text">IDEA 中的 Reload 与 Convert</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML-编码问题"><span class="nav-number">1.</span> <span class="nav-text">HTML 编码问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URL-编码问题"><span class="nav-number">2.</span> <span class="nav-text">URL 编码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端编码"><span class="nav-number">2.1.</span> <span class="nav-text">前端编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#encodeURI-与-encodeURIComponent"><span class="nav-number">2.1.1.</span> <span class="nav-text">encodeURI() 与 encodeURIComponent()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL-保留字符"><span class="nav-number">2.1.2.</span> <span class="nav-text">URL 保留字符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次编解码问题"><span class="nav-number">2.2.</span> <span class="nav-text">二次编解码问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-编码问题"><span class="nav-number">3.</span> <span class="nav-text">HTTP 编码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GET"><span class="nav-number">3.1.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POST"><span class="nav-number">3.2.</span> <span class="nav-text">POST</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IDE-相关"><span class="nav-number">4.</span> <span class="nav-text">IDE 相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA-中的-Reload-与-Convert"><span class="nav-number">4.1.</span> <span class="nav-text">IDEA 中的 Reload 与 Convert</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1103,7 +1120,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">54k</span>
   
 
   

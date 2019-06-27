@@ -159,7 +159,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/git.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/git_%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E6%96%B9%E6%A1%88.png">
-<meta property="og:updated_time" content="2019-05-31T14:08:13.367Z">
+<meta property="og:updated_time" content="2019-06-12T15:42:30.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Git">
 <meta name="twitter:description" content="Git 是一个开源的分布式版本控制系统（VCS），也是个内容管理系统(CMS)，可以高效地处理各种项目。  官网： Git Pro Git  基本操作以下是 Git 的基本命令和对应操作内容的示意图：  域新建的一个 git项目，会在项目根目录下创建一个隐藏的 .git 目录，用于存放 git 所需信息。当我们变更项目文件时是不会直接作用于 git 的，需要相关命令才能触发相应操作。一般也将 .g">
@@ -656,8 +656,8 @@
 <h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a><code>git pull</code></h3><blockquote>
 <p><code>git pull</code> 相当于 <code>git fetch</code> + <code>git merge</code> 。</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拉取远程仓库的变化，并与本地分支合并</span></span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
-<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a><code>git push</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推送本地指定分支到远程仓库</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拉取远程仓库的变化，并与本地当前分支合并</span></span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a><code>git push</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将本地的master分支推送到origin主机的master分支。如果master不存在，则会被新建。原文出自【易百教程】，商业转载请联系作者获得授权，非商业请保留原文链接：https://www.yiibai.com/git/git_push.html</span></span><br><span class="line">$ git push origin master</span><br><span class="line"><span class="comment"># 推送本地当前分支到远程仓库</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推送所有分支到远程仓库</span></span><br><span class="line">$ git push --all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强行推送当前分支到远程仓库，即使有冲突</span></span><br><span class="line">$ git push --force</span><br></pre></td></tr></table></figure>
 <h2 id="分支和合并"><a href="#分支和合并" class="headerlink" title="分支和合并"></a>分支和合并</h2><p>使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。</p>
 <h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a><code>git branch</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有远程分支：$ git branch -r</span></span><br><span class="line"><span class="comment"># 列出所有本地分支和远程分支：$ git branch -a</span></span><br><span class="line"><span class="comment"># 列出所有本地分支</span></span><br><span class="line">$ git branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个分支，以当前分支和最新 commit 为基础</span></span><br><span class="line">$ git branch [branch-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除分支</span></span><br><span class="line">$ git branch -d [branch-name]</span><br></pre></td></tr></table></figure>
@@ -822,7 +822,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -954,7 +954,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1089,7 +1095,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">54k</span>
   
 
   
