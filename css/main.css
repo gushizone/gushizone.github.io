@@ -1779,7 +1779,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff7e75;
+  background: #5244ed;
 }
 .feed-link,
 .chat {
@@ -2996,4 +2996,12 @@ ul.breadcrumb li+li:last-child {
 }
 .post-tags a {
   background: #f6f6f6;
+}
+code {
+  color: #c7254e;
+}
+h1 code,
+h2 code,
+h3 code {
+  color: #555;
 }

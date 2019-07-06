@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="本文环境基于  springboot 2.0.1.RELEASE  , springboot 要求JDK8+ 。  认识 SpringBootSpring Boot : 与 Spring4 一起诞生，是一个微框架。  整合了许多子项目，使用很少的配置就可以十分快速的搭建和运行项目。约定优先于配置，减少样板化的配置。 自动装配：springMVC，jdbc，事务等。 使用嵌入式容器：tomcat，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-26T09:23:23.974Z">
+<meta property="og:updated_time" content="2019-06-29T12:59:01.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot常用技术整合和使用">
 <meta name="twitter:description" content="本文环境基于  springboot 2.0.1.RELEASE  , springboot 要求JDK8+ 。  认识 SpringBootSpring Boot : 与 Spring4 一起诞生，是一个微框架。  整合了许多子项目，使用很少的配置就可以十分快速的搭建和运行项目。约定优先于配置，减少样板化的配置。 自动装配：springMVC，jdbc，事务等。 使用嵌入式容器：tomcat，">
@@ -580,7 +580,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">demo</span><br><span class="line">├── pom.xml</span><br><span class="line">└── src</span><br><span class="line">    ├── main</span><br><span class="line">    │   ├── java</span><br><span class="line">    │   │   └── kt</span><br><span class="line">    │   │       └── gushizone</span><br><span class="line">    │   │           └── demo</span><br><span class="line">    |   │               ├── ... <span class="comment"># 可扫描的包</span></span><br><span class="line">    │   │               └── DemoApplication.java <span class="comment"># 启动类</span></span><br><span class="line">    │   │               </span><br><span class="line">    │   └── resources</span><br><span class="line">    │       ├── application.yml <span class="comment"># 配置文件</span></span><br><span class="line">    │       ├── static <span class="comment"># 静态资源</span></span><br><span class="line">    │       └── templates <span class="comment"># 模板</span></span><br><span class="line">    └── <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>springboot 默认支持通过 <code>application.properties</code> 和 <code>application.yml</code> 配置属性。两者可以并存，且会优先参考 <code>.properties</code> ，若相关配置没有，会尝试从 <code>.yml</code> 中获取。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># api 端口号</span><br><span class="line">server.port=8080</span><br><span class="line"># url 路径</span><br><span class="line">server.servlet.context-path=/demo</span><br><span class="line"># session 超时时间</span><br><span class="line">server.servlet.session.timeout=60m</span><br><span class="line">server.tomcat.uri-encoding=utf-8</span><br></pre></td></tr></table></figure>
-<p><code>yaml</code> 是现在当前的配置方式，较 <code>.properties</code> 展示树状结构更清晰，较 <code>.xml</code> 更加简洁。</p>
+<p><code>yaml</code> 是当前流行的配置方式，较 <code>.properties</code> 展示树状结构更清晰，较 <code>.xml</code> 更加简洁。</p>
 <blockquote>
 <p><strong>下文中为使配置项更清晰，会以 <code>.properties</code> 的方式配置。</strong></p>
 </blockquote>
@@ -688,7 +688,7 @@
 </tbody>
 </table>
 <h2 id=""><a href="#" class="headerlink" title="-"></a>-</h2><h3 id="Eclipse"><a href="#Eclipse" class="headerlink" title="Eclipse"></a>Eclipse</h3><p>eclipse 默认会自动编译，不需要任何设置，即可完成热更新。</p>
-<h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h3><p>eclipse 默认不会自动编译，需要设置。</p>
+<h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h3><p>IDEA 默认不会自动编译，需要设置。</p>
 <ul>
 <li><code>Preferences</code> -&gt; <code>Build,Execution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Build project automaticaly</code> 。</li>
 <li><code>command + shift + ctrl + /</code> -&gt; <code>Registry</code> -&gt; <code>compiler.automake.allow.when.app.running</code> 。</li>
@@ -909,7 +909,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1047,7 +1047,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">40</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1182,7 +1190,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">54k</span>
+    <span title="站点总字数">56k</span>
   
 
   
