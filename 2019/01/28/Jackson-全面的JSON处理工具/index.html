@@ -150,14 +150,14 @@
 
 
   <meta name="description" content="日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  注意 : jackson-dataformat-xml 是 Jackson 扩展组件，只提供了一些简单的方式操作 xml ，不适合作为操作 xml 的主力工具使用。">
-<meta name="keywords" content="Jackson,JSON,XML">
+<meta name="keywords" content="XML,Jackson,JSON">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jackson: 全面的JSON处理工具">
 <meta property="og:url" content="https://gushizone.github.io/2019/01/28/Jackson-全面的JSON处理工具/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  注意 : jackson-dataformat-xml 是 Jackson 扩展组件，只提供了一些简单的方式操作 xml ，不适合作为操作 xml 的主力工具使用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-27T01:16:39.276Z">
+<meta property="og:updated_time" content="2019-07-15T15:27:28.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jackson: 全面的JSON处理工具">
 <meta name="twitter:description" content="日常开发中常需要  Json 、 Java 、 Xml之间的互相转换，相关 数据处理工具（data-processing tools） 有很多，鉴于 Jackson 更加全面且操作简单，这里就介绍一下 Jaxckson 的简单用法。  注意 : jackson-dataformat-xml 是 Jackson 扩展组件，只提供了一些简单的方式操作 xml ，不适合作为操作 xml 的主力工具使用。">
@@ -612,7 +612,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启用与禁用：缩进特性</span></span><br><span class="line">mapper.configure(SerializationFeature.INDENT_OUTPUT, <span class="keyword">true</span>);</span><br><span class="line">mapper.configure(SerializationFeature.INDENT_OUTPUT, <span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Jackson2.5 后的等效方法</span></span><br><span class="line">mapper.enable(SerializationFeature.INDENT_OUTPUT);</span><br><span class="line">mapper.disable(SerializationFeature.INDENT_OUTPUT);</span><br></pre></td></tr></table></figure>
 <h2 id="常用的配置"><a href="#常用的配置" class="headerlink" title="常用的配置"></a>常用的配置</h2><p>这里列举了一些常用的配置，基本可以满足日常开发。</p>
 <blockquote>
-<p>Jackson 的 Json解析 是严格按照 <code>JSON标准</code> 的，而 JavaScript 中的 json 并不严格按照这个标准的。</p>
+<p>Jackson 的 Json解析 默认是严格按照 <code>JSON标准</code> 的，而 JavaScript 中的 json 并不严格按照这个标准的。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 支持单引号（兼容 js ）</span></span><br><span class="line">mapper.enable(JsonParser.Feature.ALLOW_SINGLE_QUOTES);</span><br><span class="line"><span class="comment">// 支持字段名不带引号（兼容 js ）</span></span><br><span class="line">mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接收 "" 等同 null</span></span><br><span class="line">mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);</span><br><span class="line"><span class="comment">// 时间类型正常输出（默认Date , Calendar会输出为数字，这里禁用）</span></span><br><span class="line">mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);</span><br><span class="line"><span class="comment">// 遇到未知属性时不抛出异常</span></span><br><span class="line">mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);</span><br><span class="line"></span><br><span class="line"><span class="comment">// null 属性不进行序列化</span></span><br><span class="line">mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);</span><br></pre></td></tr></table></figure>
 <p> Jackson特性（ <a href="https://github.com/FasterXML/jackson-databind/wiki/JacksonFeatures" target="_blank" rel="noopener">JacksonFeatures</a> ）主要包含以下两种，并含有默认值。</p>
@@ -686,11 +686,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/XML/" rel="tag"><i class="fa fa-tag"></i> XML</a>
+          
             <a href="/tags/Jackson/" rel="tag"><i class="fa fa-tag"></i> Jackson</a>
           
             <a href="/tags/JSON/" rel="tag"><i class="fa fa-tag"></i> JSON</a>
-          
-            <a href="/tags/XML/" rel="tag"><i class="fa fa-tag"></i> XML</a>
           
         </div>
       
@@ -786,7 +786,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -932,7 +932,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">44</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1067,7 +1071,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">58k</span>
   
 
   
