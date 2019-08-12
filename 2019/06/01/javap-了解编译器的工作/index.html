@@ -158,7 +158,7 @@
 <meta property="og:description" content="javap : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下 javap 的简单使用。     认识 javap众所周知， *.java 文件会被 java编译器转变为 *.class 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/IDEA_javap.png">
-<meta property="og:updated_time" content="2019-06-01T18:34:40.130Z">
+<meta property="og:updated_time" content="2019-08-06T13:58:39.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javap: 了解编译器的内部工作">
 <meta name="twitter:description" content="javap : Java class文件分解器，其可以将不可读字节码转换为对应的可读指令。通过对照源码和指令，可以让我们了解编译器的内部工作，对于理解程序执行过程和执行效率等都有很大的帮助。本文就来介绍一下 javap 的简单使用。     认识 javap众所周知， *.java 文件会被 java编译器转变为 *.class 字节码文件，再交由JVM转变为对应平台的机器指令，这就是 Java程">
@@ -578,7 +578,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="javap-c"><a href="#javap-c" class="headerlink" title="javap -c"></a><code>javap -c</code></h2><p> 这里演示以下 <code>javap -c</code> 的用法和功能。</p>
+<h2 id="javap-c"><a href="#javap-c" class="headerlink" title="javap -c"></a><code>javap -c</code></h2><p> 这里演示一下 <code>javap -c</code> 的用法和功能。</p>
 <p><strong><code>*.java</code></strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavapTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str1 = <span class="string">"a"</span> + <span class="string">"b"</span> + <span class="string">"c"</span>;</span><br><span class="line">        String str2 = str1 + <span class="string">"dfg"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>javap</code> 是作用在 <code>*.class</code> 上的，先使用 <code>javac</code> 获得 <code>*.java</code> 对应的 <code>*.class</code> 。</p>
@@ -603,7 +603,7 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/gushizone/developer/master/picture/IDEA_javap.png" alt="IDEA整合javap"></p>
 <p><strong>使用方法</strong></p>
-<p>最对应文件右击 <code>External Tools</code> 即可使用所配置的外部工具。</p>
+<p>在对应文件右击 <code>External Tools</code> 即可使用所配置的外部工具。</p>
 
       
     </div>
@@ -751,7 +751,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -901,7 +901,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">45</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1036,7 +1042,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">58k</span>
+    <span title="站点总字数">60k</span>
   
 
   
