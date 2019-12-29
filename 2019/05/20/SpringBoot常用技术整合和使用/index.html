@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="本文环境基于  springboot 2.0.1.RELEASE  , springboot 要求JDK8+ 。  认识 SpringBootSpring Boot : 与 Spring4 一起诞生，是一个微框架。  整合了许多子项目，使用很少的配置就可以十分快速的搭建和运行项目。约定优先于配置，减少样板化的配置。 自动装配：springMVC，jdbc，事务等。 使用嵌入式容器：tomcat，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-17T14:18:59.166Z">
+<meta property="og:updated_time" content="2019-12-09T14:51:26.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot常用技术整合和使用">
 <meta name="twitter:description" content="本文环境基于  springboot 2.0.1.RELEASE  , springboot 要求JDK8+ 。  认识 SpringBootSpring Boot : 与 Spring4 一起诞生，是一个微框架。  整合了许多子项目，使用很少的配置就可以十分快速的搭建和运行项目。约定优先于配置，减少样板化的配置。 自动装配：springMVC，jdbc，事务等。 使用嵌入式容器：tomcat，">
@@ -638,7 +638,7 @@
 <h2 id="Application-java"><a href="#Application-java" class="headerlink" title="Application.java"></a><code>Application.java</code></h2><blockquote>
 <p><code>@MapperScan</code> 用于扫描 DAO层 接口，生成对应的 bean。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan</span>(basePackages = &#123;<span class="string">"tk.gushizone.**.dao"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(Application.class);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tk.gushizone.mybatis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan</span>(basePackages = &#123;<span class="string">"tk.gushizone.**.dao"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(MyBatisApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="热更新"><a href="#热更新" class="headerlink" title="热更新"></a>热更新</h1><p><code>热部署</code> 和 <code>热加载</code> 都是指不重启服务，完成更新编译/部署项目，其都是基于Java的类加载器实现。</p>
 <table>
 <thead>
@@ -1215,7 +1215,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">60k</span>
+    <span title="站点总字数">61k</span>
   
 
   
