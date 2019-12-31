@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="针对 Oracle，本文会谈一谈，在 sql 中常会使用到的函数和表达式，适当的使用它们，可以提高开发效率和质量。  本文示例均使用 oracle 自带的示例表。     涉及一览 说明     CASE... WHEN... 类似于 IF/ELSE 。   WITH... AS 相当于创建临时表，适用于需要重复处理一类数据   NVL() / NVL2() NULL 处理，此时类似 IF/ELS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-17T07:51:20.604Z">
+<meta property="og:updated_time" content="2019-12-30T07:38:22.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Oracle之SQL中的函数与表达式">
 <meta name="twitter:description" content="针对 Oracle，本文会谈一谈，在 sql 中常会使用到的函数和表达式，适当的使用它们，可以提高开发效率和质量。  本文示例均使用 oracle 自带的示例表。     涉及一览 说明     CASE... WHEN... 类似于 IF/ELSE 。   WITH... AS 相当于创建临时表，适用于需要重复处理一类数据   NVL() / NVL2() NULL 处理，此时类似 IF/ELS">
@@ -708,9 +708,9 @@
 <h2 id="日期问题"><a href="#日期问题" class="headerlink" title="日期问题"></a>日期问题</h2><h3 id="时间重叠"><a href="#时间重叠" class="headerlink" title="时间重叠"></a>时间重叠</h3><blockquote>
 <p>不重叠的条件:</p>
 <p><code>t.endTime &lt; &#39;参数开始时间&#39;</code> : 当前开始时间 大于 历史结束时间。</p>
-<p><code>t.betginTime &gt; &#39;参数结束时间&#39;</code> : 当前结束时间 小于 历史开始时间。</p>
+<p><code>t.startTime &gt; &#39;参数结束时间&#39;</code> : 当前结束时间 小于 历史开始时间。</p>
 </blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 获得时间重叠的数据(验证时间是否重叠)</span></span><br><span class="line"><span class="keyword">select</span> ... <span class="keyword">from</span>  <span class="keyword">table</span> t <span class="keyword">where</span> ... <span class="keyword">and</span>  <span class="keyword">not</span> ( t.betginTime &gt; <span class="string">'参数结束时间'</span> <span class="keyword">or</span> t.endTime &lt; <span class="string">'参数开始时间'</span> )</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 获得时间重叠的数据(验证时间是否重叠)</span></span><br><span class="line"><span class="keyword">select</span> ... <span class="keyword">from</span>  <span class="keyword">table</span> t <span class="keyword">where</span> ... <span class="keyword">and</span>  <span class="keyword">not</span> ( t.startTime &gt; <span class="string">'参数结束时间'</span> <span class="keyword">or</span> t.endTime &lt; <span class="string">'参数开始时间'</span> )</span><br></pre></td></tr></table></figure>
 <h2 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h2><p>Oracle 中没有自增主键，此时可以使用 sequence 代替。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DROP SEQUENCE TAX_SEQUENCE;</span><br><span class="line">CREATE SEQUENCE TAX_SEQUENCE INCREMENT BY 1 START WITH 100000  MAXVALUE 100000000 MINVALUE 1 NOCYCLE</span><br><span class="line">CACHE 20 NOORDER;</span><br></pre></td></tr></table></figure>
 <p><strong>使用方式</strong></p>
