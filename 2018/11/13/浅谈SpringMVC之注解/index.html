@@ -149,18 +149,18 @@
   </script>
 
 
-  <meta name="description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller@Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需要注意的是 @Controller 实际是 说明性注解 ，几乎等同于 @Component ，会被 Spring 识别为 bean">
-<meta name="keywords" content="Spring,SpringMVC">
+  <meta name="description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller 基于 REST 风格，新增注解：  @RestController = @Controller + @ResponseBody  @Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需">
+<meta name="keywords" content="SpringMVC,Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈SpringMVC之注解">
 <meta property="og:url" content="https://gushizone.github.io/2018/11/13/浅谈SpringMVC之注解/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
-<meta property="og:description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller@Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需要注意的是 @Controller 实际是 说明性注解 ，几乎等同于 @Component ，会被 Spring 识别为 bean">
+<meta property="og:description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller 基于 REST 风格，新增注解：  @RestController = @Controller + @ResponseBody  @Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-06T07:24:55.596Z">
+<meta property="og:updated_time" content="2020-01-04T17:55:41.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈SpringMVC之注解">
-<meta name="twitter:description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller@Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需要注意的是 @Controller 实际是 说明性注解 ，几乎等同于 @Component ，会被 Spring 识别为 bean">
+<meta name="twitter:description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller 基于 REST 风格，新增注解：  @RestController = @Controller + @ResponseBody  @Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需">
 
 
 
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.4k</span>
+                <span title="本文字数">1.5k</span>
               
 
               
@@ -527,9 +527,17 @@
 
       
         <p>本文介绍一下在 Spring MVC 中常会使用的注解。</p>
-<h1 id="Controller-amp-RequestMapping"><a href="#Controller-amp-RequestMapping" class="headerlink" title="@Controller &amp; @RequestMapping"></a><code>@Controller</code> &amp; <code>@RequestMapping</code></h1><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a><code>@Controller</code></h2><p><code>@Controller</code> 作用于类， <code>Controller</code> 负责处理从 <code>DispatcherServlet</code> 分发的请求。</p>
+<h1 id="Controller-amp-RequestMapping"><a href="#Controller-amp-RequestMapping" class="headerlink" title="@Controller &amp; @RequestMapping"></a><code>@Controller</code> &amp; <code>@RequestMapping</code></h1><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a><code>@Controller</code></h2><blockquote>
+<p>基于 REST 风格，新增注解：</p>
+<p> <code>@RestController</code> = <code>@Controller</code> + <code>@ResponseBody</code></p>
+</blockquote>
+<p><code>@Controller</code> 作用于类， <code>Controller</code> 负责处理从 <code>DispatcherServlet</code> 分发的请求。</p>
 <p>需要注意的是 <code>@Controller</code> 实际是 <strong>说明性注解</strong> ，几乎等同于 <code>@Component</code> ，会被 Spring 识别为 bean ，需要配合 <code>@RequestMapping</code> 才能成为真正处理请求的处理器。</p>
-<h2 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a><code>@RequestMapping</code></h2><p><code>@RequestMapping</code> 注解会将 HTTP 请求映射到 MVC 和 REST 控制器的处理方法上，作用于 <code>Controller</code> 类或方法。</p>
+<h2 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a><code>@RequestMapping</code></h2><blockquote>
+<p>基于 REST 风格，新增注解：</p>
+<p><code>@GetMapping</code> , <code>PostMapping</code> , <code>PutMapping</code> , <code>DeleteMapping</code>  等。</p>
+</blockquote>
+<p><code>@RequestMapping</code> 注解会将 HTTP 请求映射到 MVC 和 REST 控制器的处理方法上，作用于 <code>Controller</code> 类或方法。</p>
 <table>
 <thead>
 <tr>
@@ -584,11 +592,11 @@
 </tbody>
 </table>
 <p><strong><code>@RequestParam</code></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/Demo/list?userId=123</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/list"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toUpload</span><span class="params">(@RequestParam String userId, Model model)</span></span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"userId"</span>, userId);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"upload"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /mvc/bind/boxed?id=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/boxed"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">boxedBind</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"id: "</span> + id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong><code>@PathVariable</code></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/Demo/list/123</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/list/&#123;userId&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toUpload</span><span class="params">(@PathVariable String userId, Model model)</span></span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"userId"</span>, userId);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"upload"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /mvc/bind/boxed/1</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/boxed/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">restBind</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"id: "</span> + id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="RequestBody-amp-ResponseBody"><a href="#RequestBody-amp-ResponseBody" class="headerlink" title="@RequestBody &amp; @ResponseBody"></a><code>@RequestBody</code> &amp; <code>@ResponseBody</code></h1><table>
 <thead>
 <tr>
@@ -677,9 +685,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i> Spring</a>
-          
             <a href="/tags/SpringMVC/" rel="tag"><i class="fa fa-tag"></i> SpringMVC</a>
+          
+            <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i> Spring</a>
           
         </div>
       
@@ -1062,7 +1070,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-snowflake-o"></i>
   </span>
@@ -1076,7 +1084,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">61k</span>
+    <span title="站点总字数">60k</span>
   
 
   

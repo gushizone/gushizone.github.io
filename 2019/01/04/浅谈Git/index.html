@@ -159,7 +159,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/git.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/git_%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E6%96%B9%E6%A1%88.png">
-<meta property="og:updated_time" content="2019-12-07T15:42:32.376Z">
+<meta property="og:updated_time" content="2019-12-31T09:13:40.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Git">
 <meta name="twitter:description" content="Git 是一个开源的分布式版本控制系统（VCS），也是个内容管理系统(CMS)，可以高效地处理各种项目。  Git Git Reference Pro Git  以下是 Git 的基本命令和对应操作内容的示意图：  域新建的一个 git项目，会在项目根目录下创建一个隐藏的 .git 目录，用于存放 git 所需信息。当我们变更项目文件时是不会直接作用于 git 的，需要相关命令才能触发相应操作。一">
@@ -505,7 +505,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.8k</span>
+                <span title="本文字数">1.9k</span>
               
 
               
@@ -651,6 +651,8 @@
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 重置暂存区与工作区，与上一次commit保持一致</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> (工作区新增文件，且没有加入暂存区则不会变动)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git reset --hard</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git reset &lt;commit-hash&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git reset --hard &lt;commit-hash&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果以提交到远程库，需要强行推送</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 强行推送当前分支到远程仓库，即使有冲突</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push --force</span></span><br></pre></td></tr></table></figure>
 <h3 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a><code>git reflog</code></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看参考日志（包括重要的操作信息和对应<span class="built_in">hash</span>）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git reflog</span></span><br></pre></td></tr></table></figure>
 <h3 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a><code>git cherry-pick</code></h3><p>当我们只想获得某分支的某个功能， 可以通过 <code>cherry-pick</code> 来直接提取某个或某几个提交 。</p>
 <blockquote>
@@ -1135,7 +1137,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-snowflake-o"></i>
   </span>
@@ -1149,7 +1151,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">61k</span>
+    <span title="站点总字数">60k</span>
   
 
   

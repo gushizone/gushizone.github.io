@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="Maven基于 项目对象模型（POM） ，是纯 Java 开发的开源项目，可以用于 构建和管理各种项目 。类似工具还有： Ant 、 gradle 。  官网： Apache Maven 公共仓库 https://search.maven.org/ https://mvnrepository.com/ https://maven.aliyun.com    构件 &amp;amp; 仓库maven构件 :">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-31T08:56:00.412Z">
+<meta property="og:updated_time" content="2019-12-31T09:10:50.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Maven">
 <meta name="twitter:description" content="Maven基于 项目对象模型（POM） ，是纯 Java 开发的开源项目，可以用于 构建和管理各种项目 。类似工具还有： Ant 、 gradle 。  官网： Apache Maven 公共仓库 https://search.maven.org/ https://mvnrepository.com/ https://maven.aliyun.com    构件 &amp;amp; 仓库maven构件 :">
@@ -1026,7 +1026,7 @@
 <blockquote>
 <p><code>-D</code> 为定义所需参数，也可以直接使用 <code>mvn archetype:generate</code> 来构建，maven 会交互式询问所需参数。</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 生产 maven 基本骨架 （需要去除换行符）</span></span><br><span class="line">mvn archetype:generate</span><br><span class="line">        -DgroupId=组织名，反写网址名+项目名</span><br><span class="line">        -DartifactId=项目名/项目名-模块名</span><br><span class="line">        -Dversion=版本号</span><br><span class="line">        -Dpackage=包名（默认DgroupId）</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 生产 maven 基本骨架 （需要去除换行符）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mvn archetype:generate</span></span><br><span class="line">    -DgroupId=组织名，反写网址名+项目名</span><br><span class="line">    -DartifactId=项目名/项目名-模块名</span><br><span class="line">    -Dversion=版本号</span><br><span class="line">    -Dpackage=包名（默认DgroupId）</span><br></pre></td></tr></table></figure>
 <p><strong>默认目录骨架</strong></p>
 <p>以下是 maven 的默认目录结构精简版，部分需要自行完善。</p>
 <blockquote>
@@ -1064,7 +1064,7 @@
 <p>因为版权问题，一般开源仓库不会拥有 Oracle 的驱动。</p>
 </blockquote>
 <p>首先获取驱动 <code>app\gushi\product\11.2.0\dbhome_1\jdbc\lib\ojdbc6.jar</code> 。命令规则如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装指定文件到本地仓库命令（需要去除换行符）</span></span><br><span class="line">mvn install:install-file</span><br><span class="line">-DgroupId=&lt;groupId&gt;       # 设置项目代码的包名(一般用组织名)</span><br><span class="line">-DartifactId=&lt;artifactId&gt; # 设置项目名或模块名 </span><br><span class="line">-Dversion=1.0.0           # 版本号</span><br><span class="line">-Dpackaging=jar           # 什么类型的文件(jar包)</span><br><span class="line">-Dfile=&lt;myfile.jar&gt;       # 指定jar文件路径与文件名(同目录只需文件名)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装指定文件到本地仓库命令（需要去除换行符）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mvn install:install-file</span></span><br><span class="line">    -DgroupId=&lt;groupId&gt;       # 设置项目代码的包名(一般用组织名)</span><br><span class="line">    -DartifactId=&lt;artifactId&gt; # 设置项目名或模块名 </span><br><span class="line">    -Dversion=1.0.0           # 版本号</span><br><span class="line">    -Dpackaging=jar           # 什么类型的文件(jar包)</span><br><span class="line">    -Dfile=&lt;myfile.jar&gt;       # 指定jar文件路径与文件名(同目录只需文件名)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>解压 jar 包 可以确驱动版本，如 <code>11.2.0.1.0</code> 。</p>
 </blockquote>
@@ -1503,7 +1503,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-snowflake-o"></i>
   </span>
@@ -1517,7 +1517,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">61k</span>
+    <span title="站点总字数">60k</span>
   
 
   

@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Arizonia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'BSJ1YOHX6V',
+      apiKey: 'b9ccf7b6f91e44cfaf3eaec5571f2595',
+      indexName: 'github_pages_index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索","hits_empty":"未发现与「<strong>${query}</strong>」相关的内容","hits_stats":"已找到 <strong>${hits}</strong> 个相关内容，耗时 <strong>${time}</strong> 毫秒"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+<!-- DaoVoice : 实时在线聊天 -->
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/2360993c.js","daovoice")
+  daovoice('init', {
+      app_id: "2360993c"
+    });
+  daovoice('update');
+  </script>
+
+
+  <meta name="description" content="MyBatis 这种半封装的ORM框架相较全封装，最大的优点就是 SQL优化方便， 但也有不少痛点，如 简单的 CRUD 逻辑都需要自行处理，*.xml 不能和 *.java 文件友好契合等。 工欲善其事，必先利其器。这里介绍几个工具，可以有效的解决 Mybatis 的痛点，大大的提高工作效率。    涉及 说明     Mybatis Generator 代码生成器。   Mybatis Plu">
+<meta name="keywords" content="Mybatis,Mybatis Generator,Mybatis Plugin,Mybatis PageHelper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis三剑客">
+<meta property="og:url" content="https://gushizone.github.io/2019/06/10/Mybatis三剑客/index.html">
+<meta property="og:site_name" content="Gushi&#39;s Blog">
+<meta property="og:description" content="MyBatis 这种半封装的ORM框架相较全封装，最大的优点就是 SQL优化方便， 但也有不少痛点，如 简单的 CRUD 逻辑都需要自行处理，*.xml 不能和 *.java 文件友好契合等。 工欲善其事，必先利其器。这里介绍几个工具，可以有效的解决 Mybatis 的痛点，大大的提高工作效率。    涉及 说明     Mybatis Generator 代码生成器。   Mybatis Plu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-29T16:19:37.778Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis三剑客">
+<meta name="twitter:description" content="MyBatis 这种半封装的ORM框架相较全封装，最大的优点就是 SQL优化方便， 但也有不少痛点，如 简单的 CRUD 逻辑都需要自行处理，*.xml 不能和 *.java 文件友好契合等。 工欲善其事，必先利其器。这里介绍几个工具，可以有效的解决 Mybatis 的痛点，大大的提高工作效率。    涉及 说明     Mybatis Generator 代码生成器。   Mybatis Plu">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://gushizone.github.io/2019/06/10/Mybatis三剑客/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Mybatis三剑客 | Gushi's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gushi's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">勿忘初心，方得始终。</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gushizone.github.io/2019/06/10/Mybatis三剑客/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤世">
+      <meta itemprop="description" content="追求完美的懒人(￣▽￣)" "="">
+      <meta itemprop="image" content="/zone/avater.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gushi's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mybatis三剑客
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-10 11:46:16" itemprop="dateCreated datePublished" datetime="2019-06-10T11:46:16+08:00">2019-06-10</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/③-奇技淫巧/" itemprop="url" rel="index"><span itemprop="name">③ 奇技淫巧</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.9k</span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>MyBatis 这种半封装的ORM框架相较全封装，最大的优点就是 SQL优化方便， 但也有不少痛点，如 简单的 CRUD 逻辑都需要自行处理，<code>*.xml</code> 不能和 <code>*.java</code> 文件友好契合等。</p>
+<p>工欲善其事，必先利其器。这里介绍几个工具，可以有效的解决 Mybatis 的痛点，大大的提高工作效率。</p>
+<table>
+<thead>
+<tr>
+<th>涉及</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mybatis Generator</code></td>
+<td>代码生成器。</td>
+</tr>
+<tr>
+<td><code>Mybatis Plugin</code></td>
+<td>IDE插件，解决 <code>*.xml</code> 不能和 <code>*.java</code> 文件完美契合等。</td>
+</tr>
+<tr>
+<td><code>Mybatis PageHelper</code></td>
+<td>分页插件。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Mybatis-Generator"><a href="#Mybatis-Generator" class="headerlink" title="Mybatis Generator"></a>Mybatis Generator</h1><p><a href="http://www.mybatis.org/generator/" target="_blank" rel="noopener">Mybatis Generator</a> 是 Mybatis 提供的代码生成器，可以生成DAO层所需的<code>*.java</code> , <code>*.xml</code> 和 <code>实体类</code> ，包括可以简单的CRUD相关所需。</p>
+<blockquote>
+<p><strong>注意</strong> : 默认情况下，反复运行 <code>*.java</code> 文件会被覆盖，而 <code>*.xml</code> 会合并。</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- generator --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="generatorConfig-xml"><a href="#generatorConfig-xml" class="headerlink" title="generatorConfig.xml"></a><code>generatorConfig.xml</code></h2><blockquote>
+<p><strong>踩坑记</strong></p>
+<ul>
+<li><code>table.schema</code> : 使用oracle时，最好使用 schema 指定用户名，因为当实例下有多个用户拥有相同的表时，若对表进行变更，会无法及时更新。</li>
+</ul>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE generatorConfiguration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- todo 字段注释 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 注意相关目录一定要存在，且分模块时要加模块目录名 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">"MysqlContext"</span> <span class="attr">targetRuntime</span>=<span class="string">"MyBatis3"</span> <span class="attr">defaultModelType</span>=<span class="string">"flat"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"beginningDelimiter"</span> <span class="attr">value</span>=<span class="string">"`"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"endingDelimiter"</span> <span class="attr">value</span>=<span class="string">"`"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- optional，旨在创建class时，去除多余警告注释等 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressDate"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressAllComments"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">jdbcConnection</span> <span class="attr">driverClass</span>=<span class="string">"com.mysql.jdbc.Driver"</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">connectionURL</span>=<span class="string">"jdbc:mysql://localhost:3306/framework-x"</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">userId</span>=<span class="string">"root"</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">password</span>=<span class="string">"root"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 生成的pojo所在包 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"tk.gushizone.system.common.pojo"</span> <span class="attr">targetProject</span>=<span class="string">"system-common/src/main/java"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 生成的mapper所在目录 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"tk.gushizone.system.common.dao.sqlmap"</span> <span class="attr">targetProject</span>=<span class="string">"system-common/src/main/java"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;sqlMapGenerator targetPackage="mapper" targetProject="web/src/main/resources"/&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置mapper对应的java映射 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"tk.gushizone.system.common.dao"</span> <span class="attr">targetProject</span>=<span class="string">"system-common/src/main/java"</span></span></span><br><span class="line"><span class="tag">                         <span class="attr">type</span>=<span class="string">"XMLMAPPER"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 作用表 (关闭所有示例) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"sys_user"</span> <span class="attr">enableCountByExample</span>=<span class="string">"false"</span> <span class="attr">enableUpdateByExample</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">           <span class="attr">enableDeleteByExample</span>=<span class="string">"false"</span> <span class="attr">enableSelectByExample</span>=<span class="string">"false"</span> <span class="attr">selectByExampleQueryId</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">context</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="启动方式"><a href="#启动方式" class="headerlink" title="启动方式"></a><code>启动方式</code></h2><p>generator 有很多启动方式，个人认为 main方法 启动，最为友好，以下为示例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tk.gushizone.system.common.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.api.MyBatisGenerator;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.config.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.config.xml.ConfigurationParser;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.generator.internal.DefaultShellCallback;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * mybatis generator</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> gushizone@gmail.com</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@createTime</span> 2019-05-06 15:33</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GeneratorDisplay</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ACTIVE_CONFIG = <span class="string">"generatorConfig.xml"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ClassLoader classLoader = GeneratorDisplay.class.getClassLoader();</span><br><span class="line">    GeneratorDisplay.generator(classLoader.getResource(ACTIVE_CONFIG).getFile());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">generator</span><span class="params">(String configMode)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    List&lt;String&gt; warnings = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">boolean</span> overwrite = <span class="keyword">true</span>;</span><br><span class="line">    File configFile = <span class="keyword">new</span> File(configMode);</span><br><span class="line">    ConfigurationParser cp = <span class="keyword">new</span> ConfigurationParser(warnings);</span><br><span class="line">    Configuration config = cp.parseConfiguration(configFile);</span><br><span class="line">    DefaultShellCallback callback = <span class="keyword">new</span> DefaultShellCallback(overwrite);</span><br><span class="line">    MyBatisGenerator myBatisGenerator = <span class="keyword">new</span> MyBatisGenerator(config,</span><br><span class="line">                                                             callback, warnings);</span><br><span class="line">    myBatisGenerator.generate(<span class="keyword">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Mybatis-Plugin"><a href="#Mybatis-Plugin" class="headerlink" title="Mybatis Plugin"></a>Mybatis Plugin</h1><blockquote>
+<p>相关IDE插件有很多，以 IDEA 为例，我使用的是  <code>Free Mybatis Plugin</code> 。类似的 <code>Mybatis Plugin</code> 和 <code>Mybatis Plus</code>  功能更强大，但是收费。</p>
+</blockquote>
+<p><strong>主要功能</strong></p>
+<ul>
+<li>关联 <code>*.java</code> 和 <code>*.xml</code> ，并提供相关验证。</li>
+<li>自动补全和代码生成等。</li>
+<li><code>Free Mybatis Plugin</code> 新版已支持 generator！</li>
+</ul>
+<h1 id="Mybatis-PageHelper"><a href="#Mybatis-PageHelper" class="headerlink" title="Mybatis PageHelper"></a>Mybatis PageHelper</h1><p><code>Mybatis PageHelper</code> 是一款非常好用的 Mybatis 分页插件。支持各种数据库，使用起来也十分方便。</p>
+<ul>
+<li><a href="https://pagehelper.github.io/" target="_blank" rel="noopener">pagehelper官网</a></li>
+<li><a href="https://github.com/pagehelper/Mybatis-PageHelper" target="_blank" rel="noopener">pagehelper源码</a></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- pagehelper --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.pagehelper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>pagehelper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pagehelper:</span></span><br><span class="line"><span class="attr">  helperDialect:</span> <span class="string">mysql</span></span><br><span class="line"><span class="attr">  reasonable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  supportMethodsArguments:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  params:</span> <span class="string">count=countSql</span></span><br></pre></td></tr></table></figure>
+<h2 id="分页方式"><a href="#分页方式" class="headerlink" title="分页方式"></a>分页方式</h2><p>这里简单的介绍一下利用 <code>PageHelper</code> 实现分页的方式。</p>
+<blockquote>
+<p><code>Mybatis PageHelper</code> 提供了很多种实现方式，这里只列举常用的方式。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>涉及</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PageHelper.startPage</code> 静态方法</td>
+<td>推荐开发使用，耦合度和代码侵入性小。</td>
+</tr>
+<tr>
+<td><code>ISelect接口</code> 方式</td>
+<td>推荐框架使用，代码侵入性小，且安全性高。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="PageHelper-startPage-静态方法"><a href="#PageHelper-startPage-静态方法" class="headerlink" title="PageHelper.startPage 静态方法"></a><code>PageHelper.startPage</code> 静态方法</h3><p>这里介绍一种常用的方式： <code>PageHelper.startPage</code> + <code>PageInfo</code> 。</p>
+<blockquote>
+<p>分页时，sql 会被拦截。分页后，实际返回是 <code>Page&lt;E&gt;</code> 类型的对象，<code>Page</code> 是 <code>ArrayList</code> 的子类 , 如果想取出分页信息，需要强制转换为 <code>Page&lt;E&gt;</code> ，或使用 <code>PageInfo</code>。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取第1页，10条内容，默认查询总数count</span></span><br><span class="line">PageHelper.startPage(<span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line"><span class="comment">//紧跟着的第一个select方法会被分页</span></span><br><span class="line">List&lt;Country&gt; list = countryMapper.selectAll();</span><br><span class="line"><span class="comment">//用PageInfo对结果进行包装</span></span><br><span class="line">PageInfo page = <span class="keyword">new</span> PageInfo(list);</span><br></pre></td></tr></table></figure>
+<h3 id="ISelect接口-方式"><a href="#ISelect接口-方式" class="headerlink" title="ISelect接口 方式"></a><code>ISelect接口</code> 方式</h3><p><strong>JDK8后，配合 <code>lambda表达式</code> 更适合架构设计。</strong>  <code>ISelect接口方式</code>  在 JDK8 以前使用并不友好，这里不加赘述。</p>
+<blockquote>
+<p>可以将此段代码封装到架构底层，再用 <code>lambda</code> 配合 <code>ISelect接口</code> ，可以做到分页代码在上层业务代码中达到无侵入。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回Page对象</span></span><br><span class="line">Page&lt;Country&gt; page = PageHelper.startPage(<span class="number">1</span>, <span class="number">10</span>).doSelectPage(()-&gt; countryMapper.selectGroupBy());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回PageInfo对象</span></span><br><span class="line">pageInfo = PageHelper.startPage(<span class="number">1</span>, <span class="number">10</span>).doSelectPageInfo(() -&gt; countryMapper.selectGroupBy());</span><br></pre></td></tr></table></figure>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开始分页</span></span><br><span class="line">PageHelper.startPage(pageNum, pageSize);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 排序</span></span><br><span class="line"><span class="keyword">if</span> (StringUtils.isNotEmpty(sortField))&#123;</span><br><span class="line">  PageHelper.orderBy(sortField + <span class="string">" "</span> + sortOrder);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">List&lt;SysUser001Dto&gt; list = mapper.selectByList(user);</span><br></pre></td></tr></table></figure>
+<h2 id="注意项"><a href="#注意项" class="headerlink" title="注意项"></a>注意项</h2><h3 id="PageHelper-startPage方法重要提示"><a href="#PageHelper-startPage方法重要提示" class="headerlink" title="PageHelper.startPage方法重要提示"></a><code>PageHelper.startPage</code>方法重要提示</h3><p>只有紧跟在<code>PageHelper.startPage</code>方法后的第一个Mybatis的查询（Select）方法会被分页。</p>
+<p><strong>线程安全性</strong> ：只要 <code>PageHelper.startPage</code> 静态方法后跟着一个<code>select</code> 方法就会线程安全，因为分页参数和线程是绑定的 。反之，生产的分页参数会一直存于该线程中，没被消费，当这个该线程被再次调用时，可能会产生了莫名其妙的分页。 </p>
+<h3 id="请不要配置多个分页插件"><a href="#请不要配置多个分页插件" class="headerlink" title="请不要配置多个分页插件"></a>请不要配置多个分页插件</h3><p>请不要在系统中配置多个分页插件(使用Spring时,<code>mybatis-config.xml</code>和<code>Spring&lt;bean&gt;</code>配置方式，请选择其中一种，不要同时配置多个分页插件)！</p>
+<h3 id="分页插件不支持带有-for-update-语句的分页"><a href="#分页插件不支持带有-for-update-语句的分页" class="headerlink" title="分页插件不支持带有 for update 语句的分页"></a>分页插件不支持带有 <code>for update</code> 语句的分页</h3><p>对于带有<code>for update</code>的sql，会抛出运行时异常，对于这样的sql建议手动分页，毕竟这样的sql需要重视。</p>
+<h3 id="分页插件不支持嵌套结果映射"><a href="#分页插件不支持嵌套结果映射" class="headerlink" title="分页插件不支持嵌套结果映射"></a>分页插件不支持嵌套结果映射</h3><p>由于嵌套结果方式会导致结果集被折叠，因此分页查询的结果在折叠后总数会减少，所以无法保证分页结果数量正确。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>孤世</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://gushizone.github.io/2019/06/10/Mybatis三剑客/" title="Mybatis三剑客">https://gushizone.github.io/2019/06/10/Mybatis三剑客/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mybatis/" rel="tag"><i class="fa fa-tag"></i> Mybatis</a>
+          
+            <a href="/tags/Mybatis-Generator/" rel="tag"><i class="fa fa-tag"></i> Mybatis Generator</a>
+          
+            <a href="/tags/Mybatis-Plugin/" rel="tag"><i class="fa fa-tag"></i> Mybatis Plugin</a>
+          
+            <a href="/tags/Mybatis-PageHelper/" rel="tag"><i class="fa fa-tag"></i> Mybatis PageHelper</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/01/javap-了解编译器的工作/" rel="next" title="javap: 了解编译器的内部工作">
+                <i class="fa fa-chevron-left"></i> javap: 了解编译器的内部工作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/01/Java眼中的XML/" rel="prev" title="Java眼中的XML">
+                Java眼中的XML <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/zone/avater.jpg" alt="孤世">
+            
+              <p class="site-author-name" itemprop="name">孤世</p>
+              <div class="site-description motion-element" itemprop="description">追求完美的懒人(￣▽￣)"</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/gushizone" title="GitHub &rarr; https://github.com/gushizone" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:gushizone@gmail.com" title="E-Mail &rarr; mailto:gushizone@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://gushizone.github.io/2018/10/30/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/" title="Site &rarr; https://gushizone.github.io/2018/10/30/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/"><i class="fa fa-fw fa-cog fa-spin"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.runoob.com/" title="http://www.runoob.com/" rel="noopener" target="_blank">菜鸟教程</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-Generator"><span class="nav-number">1.</span> <span class="nav-text">Mybatis Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#generatorConfig-xml"><span class="nav-number">1.1.</span> <span class="nav-text">generatorConfig.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动方式"><span class="nav-number">1.2.</span> <span class="nav-text">启动方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-Plugin"><span class="nav-number">2.</span> <span class="nav-text">Mybatis Plugin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-PageHelper"><span class="nav-number">3.</span> <span class="nav-text">Mybatis PageHelper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分页方式"><span class="nav-number">3.1.</span> <span class="nav-text">分页方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageHelper-startPage-静态方法"><span class="nav-number">3.1.1.</span> <span class="nav-text">PageHelper.startPage 静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISelect接口-方式"><span class="nav-number">3.1.2.</span> <span class="nav-text">ISelect接口 方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.2.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意项"><span class="nav-number">3.3.</span> <span class="nav-text">注意项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageHelper-startPage方法重要提示"><span class="nav-number">3.3.1.</span> <span class="nav-text">PageHelper.startPage方法重要提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请不要配置多个分页插件"><span class="nav-number">3.3.2.</span> <span class="nav-text">请不要配置多个分页插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页插件不支持带有-for-update-语句的分页"><span class="nav-number">3.3.3.</span> <span class="nav-text">分页插件不支持带有 for update 语句的分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页插件不支持嵌套结果映射"><span class="nav-number">3.3.4.</span> <span class="nav-text">分页插件不支持嵌套结果映射</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">孤世</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">61k</span>
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,0" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
