@@ -149,16 +149,18 @@
   </script>
 
 
-  <meta name="description" content="追求完美的懒人(￣▽￣)&quot;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gushi&#39;s Blog">
-<meta property="og:url" content="https://gushizone.github.io/tags/XML/index.html">
+  <meta name="description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller 基于 REST 风格，新增注解：  @RestController = @Controller + @ResponseBody  @Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需">
+<meta name="keywords" content="Spring,SpringMVC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈SpringMVC之注解">
+<meta property="og:url" content="https://gushizone.github.io/2018/11/12/浅谈SpringMVC之注解/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
-<meta property="og:description" content="追求完美的懒人(￣▽￣)&quot;">
+<meta property="og:description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller 基于 REST 风格，新增注解：  @RestController = @Controller + @ResponseBody  @Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-04T18:19:16.802Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gushi&#39;s Blog">
-<meta name="twitter:description" content="追求完美的懒人(￣▽￣)&quot;">
+<meta name="twitter:title" content="浅谈SpringMVC之注解">
+<meta name="twitter:description" content="本文介绍一下在 Spring MVC 中常会使用的注解。 @Controller &amp;amp; @RequestMapping@Controller 基于 REST 风格，新增注解：  @RestController = @Controller + @ResponseBody  @Controller 作用于类， Controller 负责处理从 DispatcherServlet 分发的请求。 需">
 
 
 
@@ -166,7 +168,7 @@
 
   
   
-  <link rel="canonical" href="https://gushizone.github.io/tags/XML/">
+  <link rel="canonical" href="https://gushizone.github.io/2018/11/12/浅谈SpringMVC之注解/">
 
 
 
@@ -176,7 +178,7 @@
   };
 </script>
 
-  <title>标签: XML | Gushi's Blog</title>
+  <title>浅谈SpringMVC之注解 | Gushi's Blog</title>
   
 
 
@@ -224,7 +226,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -283,7 +285,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -388,106 +390,353 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>XML<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gushizone.github.io/2018/11/12/浅谈SpringMVC之注解/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤世">
+      <meta itemprop="description" content="追求完美的懒人(￣▽￣)" "="">
+      <meta itemprop="image" content="/zone/avater.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gushi's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/07/01/Java眼中的XML/" itemprop="url">
-            
-              <span itemprop="name">Java眼中的XML</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">浅谈SpringMVC之注解
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-01T23:13:35+08:00" content="2019-07-01">
-          07-01
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-12 14:33:12" itemprop="dateCreated datePublished" datetime="2018-11-12T14:33:12+08:00">2018-11-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/②-知识梳理/" itemprop="url" rel="index"><span itemprop="name">② 知识梳理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.5k</span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/01/28/Jackson-全面的JSON处理工具/" itemprop="url">
-            
-              <span itemprop="name">Jackson: 全面的JSON处理工具</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-28T15:01:22+08:00" content="2019-01-28">
-          01-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p>本文介绍一下在 Spring MVC 中常会使用的注解。</p>
+<h1 id="Controller-amp-RequestMapping"><a href="#Controller-amp-RequestMapping" class="headerlink" title="@Controller &amp; @RequestMapping"></a><code>@Controller</code> &amp; <code>@RequestMapping</code></h1><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a><code>@Controller</code></h2><blockquote>
+<p>基于 REST 风格，新增注解：</p>
+<p> <code>@RestController</code> = <code>@Controller</code> + <code>@ResponseBody</code></p>
+</blockquote>
+<p><code>@Controller</code> 作用于类， <code>Controller</code> 负责处理从 <code>DispatcherServlet</code> 分发的请求。</p>
+<p>需要注意的是 <code>@Controller</code> 实际是 <strong>说明性注解</strong> ，几乎等同于 <code>@Component</code> ，会被 Spring 识别为 bean ，需要配合 <code>@RequestMapping</code> 才能成为真正处理请求的处理器。</p>
+<h2 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a><code>@RequestMapping</code></h2><blockquote>
+<p>基于 REST 风格，新增注解：</p>
+<p><code>@GetMapping</code> , <code>PostMapping</code> , <code>PutMapping</code> , <code>DeleteMapping</code>  等。</p>
+</blockquote>
+<p><code>@RequestMapping</code> 注解会将 HTTP 请求映射到 MVC 和 REST 控制器的处理方法上，作用于 <code>Controller</code> 类或方法。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>value</code></strong></td>
+<td>指定请求的实际地址，指定的地址可以是 <code>URI Template</code> 模式。</td>
+</tr>
+<tr>
+<td><strong><code>method</code></strong></td>
+<td>指定请求的method类型， <code>GET</code> / <code>POST</code> / <code>PUT</code> / <code>DELETE</code> 等。</td>
+</tr>
+<tr>
+<td><strong><code>consumes</code></strong></td>
+<td>指定处理请求的提交内容类型（Content-Type），例如： <code>application/json</code> ,  <code>text/html</code> 。</td>
+</tr>
+<tr>
+<td><code>produces</code></td>
+<td>指定返回的内容类型，仅当 <code>request</code> 请求头中的( <code>Accept</code> )类型中包含该指定类型才返回。</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td>指定 <code>request</code> 中必须包含某些参数值是，才让该方法处理。</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td>指定 <code>request</code> 中必须包含某些指定的 <code>header</code> 值，才能让该方法处理请求。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="RequestParam-amp-PathVariable"><a href="#RequestParam-amp-PathVariable" class="headerlink" title="@RequestParam &amp; @PathVariable"></a><code>@RequestParam</code> &amp; <code>@PathVariable</code></h1><p>两个都是作用于 <code>Controller</code> 方法参数，用于参数绑定。</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>@RequestParam</code></strong></td>
+<td>主要用于接受普通的请求参数，非必需。</td>
+</tr>
+<tr>
+<td><strong><code>@PathVariable</code></strong></td>
+<td>取出 <code>URI</code> 模板中的变量作为参数，主要用于处理 <code>RESTful</code> 风格的请求。</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>@RequestParam</code></strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /mvc/bind/boxed?id=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/boxed"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">boxedBind</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"id: "</span> + id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><code>@PathVariable</code></strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /mvc/bind/boxed/1</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/boxed/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">restBind</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"id: "</span> + id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="RequestBody-amp-ResponseBody"><a href="#RequestBody-amp-ResponseBody" class="headerlink" title="@RequestBody &amp; @ResponseBody"></a><code>@RequestBody</code> &amp; <code>@ResponseBody</code></h1><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>@RequestBody</code></strong></td>
+<td>用于 Controller 的方法参数 ，从 <code>Request</code> 对象的 <code>Body</code> 数据区中取出数据。一般用于解析字符串类型的 Json 信息。</td>
+</tr>
+<tr>
+<td><strong><code>@ResponseBody</code></strong></td>
+<td>用于 Controller 的方法 ，将返回的对象放入到 <code>Response</code> 对象的 <code>Body</code> 数据区中。使用后将不会返回页面而是数据，一般用于非 <code>String</code> 的对象作为 <code>json</code> 数据返回。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="ModelAttribute-amp-SessionAttributes"><a href="#ModelAttribute-amp-SessionAttributes" class="headerlink" title="@ModelAttribute &amp; @SessionAttributes"></a><code>@ModelAttribute</code> &amp; <code>@SessionAttributes</code></h1><p>这两个注解可以实现在不同的模型（model）和控制器之间共享数据。</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>@ModelAttribute</code></strong> （若作用于普通方法）</td>
+<td>若用于普通方法，该 <code>Controller</code> 的所有方法在调用前，先执行此方法。</td>
+</tr>
+<tr>
+<td><strong><code>@ModelAttribute</code></strong> （若作用于 Controller 的方法参数）</td>
+<td>若作用于 Controller 的方法参数，进行参数绑定，类似 <code>@RequestParam</code> 。</td>
+</tr>
+<tr>
+<td><strong><code>@SessionAttributes</code></strong></td>
+<td>用于类上，将值放到session作用域中。</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>孤世</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://gushizone.github.io/2018/11/12/浅谈SpringMVC之注解/" title="浅谈SpringMVC之注解">https://gushizone.github.io/2018/11/12/浅谈SpringMVC之注解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i> Spring</a>
+          
+            <a href="/tags/SpringMVC/" rel="tag"><i class="fa fa-tag"></i> SpringMVC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/09/浅谈Spring之DI注解/" rel="next" title="浅谈Spring之DI注解">
+                <i class="fa fa-chevron-left"></i> 浅谈Spring之DI注解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/13/浅谈SpringMVC之数据绑定/" rel="prev" title="浅谈SpringMVC之数据绑定">
+                浅谈SpringMVC之数据绑定 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -507,8 +756,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -774,6 +1032,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Controller-amp-RequestMapping"><span class="nav-number">1.</span> <span class="nav-text">@Controller &amp; @RequestMapping</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller"><span class="nav-number">1.1.</span> <span class="nav-text">@Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestMapping"><span class="nav-number">1.2.</span> <span class="nav-text">@RequestMapping</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RequestParam-amp-PathVariable"><span class="nav-number">2.</span> <span class="nav-text">@RequestParam &amp; @PathVariable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RequestBody-amp-ResponseBody"><span class="nav-number">3.</span> <span class="nav-text">@RequestBody &amp; @ResponseBody</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ModelAttribute-amp-SessionAttributes"><span class="nav-number">4.</span> <span class="nav-text">@ModelAttribute &amp; @SessionAttributes</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -795,7 +1070,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-snowflake-o"></i>
   </span>
@@ -809,7 +1084,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">61k</span>
+    <span title="站点总字数">60k</span>
   
 
   
@@ -931,6 +1206,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
 
   
 
@@ -946,6 +1225,8 @@
 
   
 
+
+  
 
 
   
