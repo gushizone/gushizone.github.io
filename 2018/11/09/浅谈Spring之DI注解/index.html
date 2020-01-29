@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="Spring 在管理 Bean 时会使用到各种注解 ，本文介绍一下开发中常会用到的注解。 以下是常用DI注解比较：    DI 常用注解 说明 用途     @Autowired 自动装配，从ApplicationContext中取出 同类型 的bean装配到被注解项上。 属性 / setter / 构造器   @Qualifier 因为 @Autowired 按照类型自动装配可能存在多个bean">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-17T04:26:32.348Z">
+<meta property="og:updated_time" content="2020-01-25T04:37:40.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Spring之DI注解">
 <meta name="twitter:description" content="Spring 在管理 Bean 时会使用到各种注解 ，本文介绍一下开发中常会用到的注解。 以下是常用DI注解比较：    DI 常用注解 说明 用途     @Autowired 自动装配，从ApplicationContext中取出 同类型 的bean装配到被注解项上。 属性 / setter / 构造器   @Qualifier 因为 @Autowired 按照类型自动装配可能存在多个bean">
@@ -549,7 +549,7 @@
 </tr>
 <tr>
 <td><strong><code>@Resource</code></strong></td>
-<td>装配资源，默认从ApplicationContext中取出 <strong>同名</strong> 的bean装配到被注解项上。<code>@Resource</code> 可以通过 <code>byName</code> / <code>byType</code> 两种方式，只是一般使用默认 <code>byName</code> 匹配装载。</td>
+<td>装配资源，默认从ApplicationContext中取出 <strong>同名</strong> 的bean装配到被注解项上。<code>@Resource</code> 可以通过 <code>byName</code> / <code>byType</code> 两种方式，若不指定默认 <code>byName</code> 匹配装载，找不到按 <code>byType</code> 装载。</td>
 <td><code>属性</code> / <code>setter</code></td>
 </tr>
 <tr>
@@ -950,6 +950,18 @@
                     
                       
                     
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
                     <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -981,6 +993,15 @@
                     
                   
                   <a href="mailto:gushizone@gmail.com" title="E-Mail &rarr; mailto:gushizone@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/gushizone/demo" title="Code &rarr; https://github.com/gushizone/demo" rel="noopener" target="_blank"><i class="fa fa-fw fa-free-code-camp"></i></a>
                 </span>
               
                 <span class="links-of-author-item">

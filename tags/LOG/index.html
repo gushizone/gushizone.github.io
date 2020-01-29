@@ -665,6 +665,18 @@
                     
                       
                     
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
                     <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -696,6 +708,15 @@
                     
                   
                   <a href="mailto:gushizone@gmail.com" title="E-Mail &rarr; mailto:gushizone@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/gushizone/demo" title="Code &rarr; https://github.com/gushizone/demo" rel="noopener" target="_blank"><i class="fa fa-fw fa-free-code-camp"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1224,6 +1245,60 @@
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
       if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+ched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
