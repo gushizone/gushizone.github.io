@@ -149,18 +149,18 @@
   </script>
 
 
-  <meta name="description" content="在日常开发中，我们常常需要重写 getter / setter , toString , equals / hashCode 等，虽然现在 IDE 都支持 generate , 但是字段变更后还需要再修改，最重要的是：重复而繁琐的代码会影响关键代码的可读性。本文就介绍 Lombok 开发插件，使用注解来有效的简化代码。 认识 LombokLombok 是一个Java 库，可以通过注解的方式简化代码">
+  <meta name="description" content="在日常开发中，我们常常需要重写 getter / setter , toString , equals / hashCode 等，虽然现在 IDE 都支持 generate , 但是字段变更后还需要再修改，最重要的是：重复而繁琐的代码会影响关键代码的可读性。本文就介绍 Lombok ，使用注解来有效的简化代码。  Lombok官网  认识 LombokLombok 是一个Java 库，可以通过注解">
 <meta name="keywords" content="Java,Lombok,JSR-269">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lombok: 代码简洁之道">
 <meta property="og:url" content="https://gushizone.github.io/2019/07/28/Lombok-代码简洁之道/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
-<meta property="og:description" content="在日常开发中，我们常常需要重写 getter / setter , toString , equals / hashCode 等，虽然现在 IDE 都支持 generate , 但是字段变更后还需要再修改，最重要的是：重复而繁琐的代码会影响关键代码的可读性。本文就介绍 Lombok 开发插件，使用注解来有效的简化代码。 认识 LombokLombok 是一个Java 库，可以通过注解的方式简化代码">
+<meta property="og:description" content="在日常开发中，我们常常需要重写 getter / setter , toString , equals / hashCode 等，虽然现在 IDE 都支持 generate , 但是字段变更后还需要再修改，最重要的是：重复而繁琐的代码会影响关键代码的可读性。本文就介绍 Lombok ，使用注解来有效的简化代码。  Lombok官网  认识 LombokLombok 是一个Java 库，可以通过注解">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-29T16:10:40.419Z">
+<meta property="og:updated_time" content="2020-01-31T11:19:15.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lombok: 代码简洁之道">
-<meta name="twitter:description" content="在日常开发中，我们常常需要重写 getter / setter , toString , equals / hashCode 等，虽然现在 IDE 都支持 generate , 但是字段变更后还需要再修改，最重要的是：重复而繁琐的代码会影响关键代码的可读性。本文就介绍 Lombok 开发插件，使用注解来有效的简化代码。 认识 LombokLombok 是一个Java 库，可以通过注解的方式简化代码">
+<meta name="twitter:description" content="在日常开发中，我们常常需要重写 getter / setter , toString , equals / hashCode 等，虽然现在 IDE 都支持 generate , 但是字段变更后还需要再修改，最重要的是：重复而繁琐的代码会影响关键代码的可读性。本文就介绍 Lombok ，使用注解来有效的简化代码。  Lombok官网  认识 LombokLombok 是一个Java 库，可以通过注解">
 
 
 
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.1k</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -526,58 +526,71 @@
       
 
       
-        <p>在日常开发中，我们常常需要重写 <code>getter</code> / <code>setter</code> , <code>toString</code> , <code>equals</code> / <code>hashCode</code> 等，虽然现在 IDE 都支持 generate , 但是字段变更后还需要再修改，最重要的是：重复而繁琐的代码会影响关键代码的可读性。本文就介绍 <code>Lombok</code> 开发插件，使用注解来有效的简化代码。</p>
-<h1 id="认识-Lombok"><a href="#认识-Lombok" class="headerlink" title="认识 Lombok"></a>认识 Lombok</h1><p><a href="https://www.projectlombok.org" target="_blank" rel="noopener">Lombok</a> 是一个Java 库，可以通过注解的方式简化代码，如 <code>getter</code> , <code>equals</code> 或日志变量等。</p>
-<p><strong><code>Lombok</code> 非常适用于 <code>pojo</code>  等对象。</strong></p>
-<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p><code>Lombok</code> 本质上是实现 <code>JSR 269 API</code> 的程序，自 <code>JDK6</code> 后就被 <code>javac</code> 支持，其可以在 <code>javac</code> 时动态修改语法树，产生真实所需字节码文件。</p>
-<p>由此可知，在编译后，我们真实所需的代码就会产生，这种工作方式不同与 <code>反射</code> ， <strong><code>Lombok</code>  不会影响程序性能</strong> 。</p>
-<p>利用 <code>javap</code> 可以验证 <code>Lombok</code> 的工作原理。使用 <a href="http://java-decompiler.github.io/" target="_blank" rel="noopener">jd-GUI</a> 等工具可以查看详细内容。</p>
+        <p>在日常开发中，我们常常需要重写 <code>getter</code> / <code>setter</code> , <code>toString</code> , <code>equals</code> / <code>hashCode</code> 等，虽然现在 IDE 都支持 generate , 但是字段变更后还需要再修改，最重要的是：重复而繁琐的代码会影响关键代码的可读性。本文就介绍 Lombok ，使用注解来有效的简化代码。</p>
+<ul>
+<li><a href="https://www.projectlombok.org" target="_blank" rel="noopener">Lombok官网</a></li>
+</ul>
+<h1 id="认识-Lombok"><a href="#认识-Lombok" class="headerlink" title="认识 Lombok"></a>认识 Lombok</h1><p>Lombok 是一个Java 库，可以通过注解的方式简化代码，如 <code>getter</code> , <code>equals</code> 或日志变量等。</p>
+<p><strong>Lombok 非常适用于 pojo 类对象。</strong></p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>Lombok 本质上是实现 <strong>JSR 269 API</strong> 的程序，自 JDK6 后就被 javac 支持，其可以在 javac 时动态修改语法树，产生真实所需字节码文件。</p>
+<p>由此可知，在编译后，我们真实所需的代码就会产生，这种工作方式不同与 反射 ， <strong>Lombok  不会影响程序性能</strong> 。</p>
+<p>利用 javap 可以验证 Lombok 的工作原理。使用 <a href="http://java-decompiler.github.io/" target="_blank" rel="noopener">jd-GUI</a> 等工具可以查看详细内容。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tk.gushizone.java.lombok.getter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Getter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">"Item.java"</span></span><br><span class="line">public class package tk.gushizone.java.lombok.getter.Item &#123;</span><br><span class="line">  public tk.gushizone.lombok.getter.Item();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: invokespecial <span class="comment">#1                  // Method java/lang/Object."&lt;init&gt;":()V</span></span><br><span class="line">       4: <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">  public java.lang.Integer getId();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: getfield      <span class="comment">#2                  // Field id:Ljava/lang/Integer;</span></span><br><span class="line">       4: areturn</span><br><span class="line"></span><br><span class="line">  public java.lang.String getName();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: getfield      <span class="comment">#3                  // Field name:Ljava/lang/String;</span></span><br><span class="line">       4: areturn</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><table>
 <thead>
 <tr>
 <th>常用注解</th>
+<th>作用域</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong><code>@Getter</code></strong> / <strong><code>@Setter</code></strong></td>
-<td>作用于 <code>类</code> 或 <code>字段</code> ，在类上，为所有字段生成，在字段上则只单独生成。</td>
+<td>类 \</td>
+<td>字段</td>
+<td>在类上，为所有字段生成，在字段上则只单独生成。</td>
 </tr>
 <tr>
 <td><strong><code>@ToString</code></strong></td>
-<td>作用于 <code>类</code> ，生成 <code>toString</code> 方法。</td>
+<td>类</td>
+<td>生成 <code>toString</code> 方法。</td>
 </tr>
 <tr>
 <td><strong><code>@EqualsAndHashCode</code></strong></td>
-<td>作用于 <code>类</code> ，生成 <code>hashCode</code> 和 <code>equals</code> 。</td>
+<td>类</td>
+<td>生成 <code>hashCode</code> 和 <code>equals</code> 。</td>
 </tr>
 <tr>
 <td><code>@NoArgsConstructor</code></td>
-<td>作用于 <code>类</code> ，生成无参的构造方法。</td>
+<td>类</td>
+<td>生成无参的构造方法。</td>
 </tr>
 <tr>
 <td><strong><code>@RequiredArgsConstructor</code></strong></td>
-<td>作用于 <code>类</code> ，为必需参数生成构造方法，比如 <code>final</code> 和被 <code>@NonNull</code> 注解的字段。</td>
+<td>类</td>
+<td>为必需参数生成构造方法，比如 <code>final</code> 和被 <code>@NonNull</code> 注解的字段。</td>
 </tr>
 <tr>
 <td><strong><code>@AllArgsConstructor</code></strong></td>
-<td>作用于 <code>类</code> ，生成包含类中所有字段的构造方法。</td>
+<td>类</td>
+<td>生成包含类中所有字段的构造方法。</td>
 </tr>
 <tr>
 <td><strong><code>@Data</code></strong></td>
-<td>作用于 <code>类</code> ，包含 : <code>@Getter</code> , <code>@Setter</code> , <code>@RequiredArgsConstructor</code> , <code>@ToString</code> , <code>@EqualsAndHashCode</code> 。</td>
+<td>类</td>
+<td>包含 : <code>@Getter</code> , <code>@Setter</code> , <code>@RequiredArgsConstructor</code> , <code>@ToString</code> , <code>@EqualsAndHashCode</code> 。</td>
 </tr>
 <tr>
 <td><strong><code>@Slf4j</code></strong></td>
-<td>作用于 <code>类</code> ，生成日志常量 <code>log</code> ，基于 <code>logback</code> 。对应的还有 <code>@Log4j</code> 等注解。</td>
+<td>类</td>
+<td>生成日志常量 <code>log</code> ，基于 <code>logback</code> 。对应的还有 <code>@Log4j</code> 等注解。</td>
 </tr>
 </tbody>
 </table>
 <h1 id="使用-Lombok"><a href="#使用-Lombok" class="headerlink" title="使用 Lombok"></a>使用 Lombok</h1><h2 id="必需条件"><a href="#必需条件" class="headerlink" title="必需条件"></a>必需条件</h2><p><strong>引用依赖</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- lombok --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>Lombok插件</strong></p>
 <p>由工作原理可知， Lombok 是是编译后才会产生对应的方法，而这些方法会在开发中（编译前）被使用，这不会被 IDE等 直接支持，需要插件支持。</p>
 <p>获取插件 : <a href="https://www.projectlombok.org/setup/overview" target="_blank" rel="noopener">Lombok官网</a> 。</p>
@@ -787,7 +800,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -965,7 +978,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1109,7 +1122,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">63k</span>
+    <span title="站点总字数">65k</span>
   
 
   

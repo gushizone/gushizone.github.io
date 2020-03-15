@@ -157,12 +157,12 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="编程中常会遇到一些字符处理问题，这里来介绍一下前后台关于字符编码的问题。 常见的字符编码种类如下：    常用字符编码 描述 补充说明     ASCII 1字节，字符范围0-127，包含26个基本拉丁字母、阿拉伯数目字和英式标点符号。 只能显示现代美国英语，即使其扩展 EASCII （字符范围0-255）也只解决了部分西欧语言的显示。   ISO-8859-1 1字节，字符范围0-255，兼容">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/web_%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81.png">
-<meta property="og:updated_time" content="2019-06-03T05:59:47.306Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/gushizone/image-repository/master/web-character.png">
+<meta property="og:updated_time" content="2020-03-15T15:52:26.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈字符编码">
 <meta name="twitter:description" content="编程中常会遇到一些字符处理问题，这里来介绍一下前后台关于字符编码的问题。 常见的字符编码种类如下：    常用字符编码 描述 补充说明     ASCII 1字节，字符范围0-127，包含26个基本拉丁字母、阿拉伯数目字和英式标点符号。 只能显示现代美国英语，即使其扩展 EASCII （字符范围0-255）也只解决了部分西欧语言的显示。   ISO-8859-1 1字节，字符范围0-255，兼容">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/web_%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gushizone/image-repository/master/web-character.png">
 
 
 
@@ -678,7 +678,7 @@
 <blockquote>
 <p>因为第一次编码后只存在 <code>ASCII字符</code> ，所以第二次 <code>UTF-8编码</code> 等同于  <code>iso-8859-1编码</code> 。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/gushizone/developer/master/picture/web_%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81.png" alt="web_字符编码"></p>
+<p><img src="https://raw.githubusercontent.com/gushizone/image-repository/master/web-character.png" alt="web-character"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js : 二次编码</span></span><br><span class="line"><span class="built_in">encodeURI</span>(<span class="built_in">encodeURI</span>(paramName));</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// servlet : 二次解码</span></span><br><span class="line">URLDecoder.decode(request.getParameter(paramName), <span class="string">"UTF-8"</span>)</span><br><span class="line"><span class="comment">// struts2 : 二次解码</span></span><br><span class="line">URLDecoder.decode(URLDecoder.decode(paramName, <span class="string">"UTF-8"</span>), <span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
 <h1 id="HTTP-编码问题"><a href="#HTTP-编码问题" class="headerlink" title="HTTP 编码问题"></a>HTTP 编码问题</h1><p>理解了二次编码问题我们就可以分析和解决 get方法 乱码问题，但对于 SpringMVC 还有更方便的方法。</p>
@@ -847,7 +847,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1025,7 +1025,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1169,7 +1169,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">63k</span>
+    <span title="站点总字数">65k</span>
   
 
   
