@@ -152,17 +152,17 @@
   <meta name="description" content="一个成熟的项目，日志系统是必不可少的。当前流行的框架有 log4j , logback ，它们都是基于 slf4j 日志规范/接口 开发。本文就来介绍一下 Log4j 。 认识 Log4J日志架构Log4j API 采用分层架构，每一层有不同的对象，完成不同的任务。这种分层架构让设计变得灵活，且易于日后扩展。  核心对象★   涉及一览 说明     Logger 负责获取日志信息，并存储于一个分">
 <meta name="keywords" content="Log,SL4J,Log4j">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈Log之Log4j_">
-<meta property="og:url" content="https://gushizone.github.io/2019/04/30/浅谈Log之Log4j_/index.html">
+<meta property="og:title" content="浅谈Log之Log4j">
+<meta property="og:url" content="https://gushizone.github.io/2019/04/30/浅谈Log之Log4j/index.html">
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="一个成熟的项目，日志系统是必不可少的。当前流行的框架有 log4j , logback ，它们都是基于 slf4j 日志规范/接口 开发。本文就来介绍一下 Log4j 。 认识 Log4J日志架构Log4j API 采用分层架构，每一层有不同的对象，完成不同的任务。这种分层架构让设计变得灵活，且易于日后扩展。  核心对象★   涉及一览 说明     Logger 负责获取日志信息，并存储于一个分">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/log4j_%E6%A1%86%E6%9E%B6%E7%BB%84%E4%BB%B6.jpg">
-<meta property="og:updated_time" content="2020-04-04T11:27:41.005Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/gushizone/image-repository/master/log4j-framework.jpg">
+<meta property="og:updated_time" content="2020-04-04T11:39:29.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈Log之Log4j_">
+<meta name="twitter:title" content="浅谈Log之Log4j">
 <meta name="twitter:description" content="一个成熟的项目，日志系统是必不可少的。当前流行的框架有 log4j , logback ，它们都是基于 slf4j 日志规范/接口 开发。本文就来介绍一下 Log4j 。 认识 Log4J日志架构Log4j API 采用分层架构，每一层有不同的对象，完成不同的任务。这种分层架构让设计变得灵活，且易于日后扩展。  核心对象★   涉及一览 说明     Logger 负责获取日志信息，并存储于一个分">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/gushizone/developer/master/picture/log4j_%E6%A1%86%E6%9E%B6%E7%BB%84%E4%BB%B6.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gushizone/image-repository/master/log4j-framework.jpg">
 
 
 
@@ -170,7 +170,7 @@
 
   
   
-  <link rel="canonical" href="https://gushizone.github.io/2019/04/30/浅谈Log之Log4j_/">
+  <link rel="canonical" href="https://gushizone.github.io/2019/04/30/浅谈Log之Log4j/">
 
 
 
@@ -180,7 +180,7 @@
   };
 </script>
 
-  <title>浅谈Log之Log4j_ | Gushi's Blog</title>
+  <title>浅谈Log之Log4j | Gushi's Blog</title>
   
 
 
@@ -412,7 +412,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gushizone.github.io/2019/04/30/浅谈Log之Log4j_/">
+    <link itemprop="mainEntityOfPage" href="https://gushizone.github.io/2019/04/30/浅谈Log之Log4j/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="孤世">
@@ -429,7 +429,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅谈Log之Log4j_
+          <h1 class="post-title" itemprop="name headline">浅谈Log之Log4j
 
               
             
@@ -530,7 +530,7 @@
       
         <p>一个成熟的项目，日志系统是必不可少的。当前流行的框架有 <code>log4j</code> , <code>logback</code> ，它们都是基于 <code>slf4j</code> 日志规范/接口 开发。本文就来介绍一下 Log4j 。</p>
 <h1 id="认识-Log4J"><a href="#认识-Log4J" class="headerlink" title="认识 Log4J"></a>认识 <code>Log4J</code></h1><h2 id="日志架构"><a href="#日志架构" class="headerlink" title="日志架构"></a>日志架构</h2><p>Log4j API 采用分层架构，每一层有不同的对象，完成不同的任务。这种分层架构让设计变得灵活，且易于日后扩展。</p>
-<p><img src="https://raw.githubusercontent.com/gushizone/developer/master/picture/log4j_%E6%A1%86%E6%9E%B6%E7%BB%84%E4%BB%B6.jpg" alt="log4j_框架组件"></p>
+<p><img src="https://raw.githubusercontent.com/gushizone/image-repository/master/log4j-framework.jpg" alt="log4j-framework"></p>
 <h2 id="核心对象★"><a href="#核心对象★" class="headerlink" title="核心对象★"></a>核心对象★</h2><table>
 <thead>
 <tr>
@@ -873,7 +873,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://gushizone.github.io/2019/04/30/浅谈Log之Log4j_/" title="浅谈Log之Log4j_">https://gushizone.github.io/2019/04/30/浅谈Log之Log4j_/</a>
+    <a href="https://gushizone.github.io/2019/04/30/浅谈Log之Log4j/" title="浅谈Log之Log4j">https://gushizone.github.io/2019/04/30/浅谈Log之Log4j/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -913,8 +913,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/01/浅谈Log之Logback_/" rel="prev" title="浅谈Log之Logback_">
-                浅谈Log之Logback_ <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/01/浅谈Log之Logback/" rel="prev" title="浅谈Log之Logback">
+                浅谈Log之Logback <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
