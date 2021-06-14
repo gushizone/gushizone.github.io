@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="Java8（又称为 JDK8）是 Java 语言开发的一个重要版本，于2014年发布。 JDK8 可以说是里程碑式的版本，提供了很多的新功能，支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。 本文仅涉及编程开发中常用的特性 。  官网：JDK8新功能     涉及 说明     Lambda表达式 允许把函数作为参数传递进方法中。   方法引用 函">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-14T11:50:06.591Z">
+<meta property="og:updated_time" content="2020-07-03T02:12:01.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈JDK8新特性">
 <meta name="twitter:description" content="Java8（又称为 JDK8）是 Java 语言开发的一个重要版本，于2014年发布。 JDK8 可以说是里程碑式的版本，提供了很多的新功能，支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。 本文仅涉及编程开发中常用的特性 。  官网：JDK8新功能     涉及 说明     Lambda表达式 允许把函数作为参数传递进方法中。   方法引用 函">
@@ -817,10 +817,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(action);</span><br><span class="line">    <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">        action.accept(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>Consumer接口</code> 是 jdk8新增的 <code>函数式接口</code> 。</p>
 <blockquote>
-<p>其提供的接口方法是：一个入参，没有出参。</p>
+<p>其提供的接口方法是：一个参数，没有返回值。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.util.function;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里 <code>System.out::println</code> 和 <code>Consumer接口</code>  有相同的出入参。</p>
+<p>这里 <code>System.out::println</code> 和 <code>Consumer接口</code>  有相同的参数和返回值。</p>
 <blockquote>
 <p>故，这里集合会遍历执行 相应逻辑，即遍历打印。</p>
 </blockquote>
@@ -1073,8 +1073,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -1091,10 +1089,6 @@
                     
                   
                     
-                    
-                      
-                    
-                      
                     
                       
                     
@@ -1354,7 +1348,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-snowflake-o"></i>
   </span>

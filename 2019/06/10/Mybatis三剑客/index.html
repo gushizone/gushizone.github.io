@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="MyBatis 这种半封装的ORM框架相较全封装，最大的优点就是 SQL优化方便， 但也有不少痛点，如 简单的 CRUD 逻辑都需要自行处理，*.xml 不能和 *.java 文件友好契合等。 工欲善其事，必先利其器。这里介绍几个工具，可以有效的解决 Mybatis 的痛点，大大的提高工作效率。    涉及 说明     Mybatis Generator 代码生成器。   Mybatis Plu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-29T16:19:37.778Z">
+<meta property="og:updated_time" content="2021-02-06T14:59:28.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mybatis三剑客">
 <meta name="twitter:description" content="MyBatis 这种半封装的ORM框架相较全封装，最大的优点就是 SQL优化方便， 但也有不少痛点，如 简单的 CRUD 逻辑都需要自行处理，*.xml 不能和 *.java 文件友好契合等。 工欲善其事，必先利其器。这里介绍几个工具，可以有效的解决 Mybatis 的痛点，大大的提高工作效率。    涉及 说明     Mybatis Generator 代码生成器。   Mybatis Plu">
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.9k</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -612,12 +612,18 @@
 <p>可以将此段代码封装到架构底层，再用 <code>lambda</code> 配合 <code>ISelect接口</code> ，可以做到分页代码在上层业务代码中达到无侵入。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回Page对象</span></span><br><span class="line">Page&lt;Country&gt; page = PageHelper.startPage(<span class="number">1</span>, <span class="number">10</span>).doSelectPage(()-&gt; countryMapper.selectGroupBy());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回PageInfo对象</span></span><br><span class="line">pageInfo = PageHelper.startPage(<span class="number">1</span>, <span class="number">10</span>).doSelectPageInfo(() -&gt; countryMapper.selectGroupBy());</span><br></pre></td></tr></table></figure>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开始分页</span></span><br><span class="line">PageHelper.startPage(pageNum, pageSize);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 排序</span></span><br><span class="line"><span class="keyword">if</span> (StringUtils.isNotEmpty(sortField))&#123;</span><br><span class="line">  PageHelper.orderBy(sortField + <span class="string">" "</span> + sortOrder);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">List&lt;SysUser001Dto&gt; list = mapper.selectByList(user);</span><br></pre></td></tr></table></figure>
-<h2 id="注意项"><a href="#注意项" class="headerlink" title="注意项"></a>注意项</h2><h3 id="PageHelper-startPage方法重要提示"><a href="#PageHelper-startPage方法重要提示" class="headerlink" title="PageHelper.startPage方法重要提示"></a><code>PageHelper.startPage</code>方法重要提示</h3><p>只有紧跟在<code>PageHelper.startPage</code>方法后的第一个Mybatis的查询（Select）方法会被分页。</p>
-<p><strong>线程安全性</strong> ：只要 <code>PageHelper.startPage</code> 静态方法后跟着一个<code>select</code> 方法就会线程安全，因为分页参数和线程是绑定的 。反之，生产的分页参数会一直存于该线程中，没被消费，当这个该线程被再次调用时，可能会产生了莫名其妙的分页。 </p>
-<h3 id="请不要配置多个分页插件"><a href="#请不要配置多个分页插件" class="headerlink" title="请不要配置多个分页插件"></a>请不要配置多个分页插件</h3><p>请不要在系统中配置多个分页插件(使用Spring时,<code>mybatis-config.xml</code>和<code>Spring&lt;bean&gt;</code>配置方式，请选择其中一种，不要同时配置多个分页插件)！</p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String order = StringUtils.EMPTY;</span><br><span class="line"><span class="keyword">if</span> (StringUtils.isNotEmpty(sortField))&#123;</span><br><span class="line">  order = sortField + <span class="string">" "</span> + sortOrder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始分页</span></span><br><span class="line">PageHelper.startPage(pageNum, pageSize)</span><br><span class="line">  .orderBy(order);</span><br><span class="line"></span><br><span class="line">List&lt;SysUser001Dto&gt; list = mapper.selectByList(user);</span><br></pre></td></tr></table></figure>
+<h2 id="注意项"><a href="#注意项" class="headerlink" title="注意项"></a>注意项</h2><h3 id="PageHelper-startPage-方法重要提示"><a href="#PageHelper-startPage-方法重要提示" class="headerlink" title="PageHelper.startPage 方法重要提示"></a>PageHelper.startPage 方法重要提示</h3><p>只有紧跟在 <code>PageHelper.startPage</code> 方法后的第一个Mybatis的查询（Select）方法会被分页。</p>
+<p><strong>线程安全性</strong> ：只要 <code>PageHelper.startPage</code> 静态方法后跟着一个<code>select</code> 方法就会线程安全，因为分页参数和线程是绑定的 。反之，生产的分页参数会一直存于该线程中，没被消费，当这个该线程被再次调用时，可能会产生了莫名其妙的分页。所以一定要避免中间可能会抛异常的操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开始分页</span></span><br><span class="line">PageHelper.startPage(pageNum, pageSize);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误的示范：中间很可能抛异常，然后造成下次异常分页</span></span><br><span class="line"><span class="keyword">if</span> (StringUtils.isNotEmpty(sortField))&#123;</span><br><span class="line">  PageHelper.orderBy(sortField + <span class="string">" "</span> + sortOrder);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">List&lt;SysUser001Dto&gt; list = mapper.selectByList(user);</span><br></pre></td></tr></table></figure>
+<h3 id="分页插件不支持嵌套结果映射"><a href="#分页插件不支持嵌套结果映射" class="headerlink" title="分页插件不支持嵌套结果映射"></a>分页插件不支持嵌套结果映射</h3><p>由于嵌套结果方式会导致结果集被折叠，因此分页查询的结果在折叠后总数会减少，所以无法保证分页结果数量正确。即 <strong>不支持Mybatis一对多的正常分页</strong> 。</p>
+<p>解决方案</p>
+<ol>
+<li>主子表分开查询，（若需要）先条件过滤子表，再分页主表，再获取子表信息。</li>
+<li>主子表一起查询，逻辑分页。</li>
+</ol>
 <h3 id="分页插件不支持带有-for-update-语句的分页"><a href="#分页插件不支持带有-for-update-语句的分页" class="headerlink" title="分页插件不支持带有 for update 语句的分页"></a>分页插件不支持带有 <code>for update</code> 语句的分页</h3><p>对于带有<code>for update</code>的sql，会抛出运行时异常，对于这样的sql建议手动分页，毕竟这样的sql需要重视。</p>
-<h3 id="分页插件不支持嵌套结果映射"><a href="#分页插件不支持嵌套结果映射" class="headerlink" title="分页插件不支持嵌套结果映射"></a>分页插件不支持嵌套结果映射</h3><p>由于嵌套结果方式会导致结果集被折叠，因此分页查询的结果在折叠后总数会减少，所以无法保证分页结果数量正确。</p>
+<h3 id="请不要配置多个分页插件"><a href="#请不要配置多个分页插件" class="headerlink" title="请不要配置多个分页插件"></a>请不要配置多个分页插件</h3><p>请不要在系统中配置多个分页插件(使用Spring时,<code>mybatis-config.xml</code>和<code>Spring&lt;bean&gt;</code>配置方式，请选择其中一种，不要同时配置多个分页插件)！</p>
 
       
     </div>
@@ -796,8 +802,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -814,10 +818,6 @@
                     
                   
                     
-                    
-                      
-                    
-                      
                     
                       
                     
@@ -1049,7 +1049,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-Generator"><span class="nav-number">1.</span> <span class="nav-text">Mybatis Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#generatorConfig-xml"><span class="nav-number">1.1.</span> <span class="nav-text">generatorConfig.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动方式"><span class="nav-number">1.2.</span> <span class="nav-text">启动方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-Plugin"><span class="nav-number">2.</span> <span class="nav-text">Mybatis Plugin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-PageHelper"><span class="nav-number">3.</span> <span class="nav-text">Mybatis PageHelper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分页方式"><span class="nav-number">3.1.</span> <span class="nav-text">分页方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageHelper-startPage-静态方法"><span class="nav-number">3.1.1.</span> <span class="nav-text">PageHelper.startPage 静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISelect接口-方式"><span class="nav-number">3.1.2.</span> <span class="nav-text">ISelect接口 方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.2.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意项"><span class="nav-number">3.3.</span> <span class="nav-text">注意项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageHelper-startPage方法重要提示"><span class="nav-number">3.3.1.</span> <span class="nav-text">PageHelper.startPage方法重要提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请不要配置多个分页插件"><span class="nav-number">3.3.2.</span> <span class="nav-text">请不要配置多个分页插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页插件不支持带有-for-update-语句的分页"><span class="nav-number">3.3.3.</span> <span class="nav-text">分页插件不支持带有 for update 语句的分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页插件不支持嵌套结果映射"><span class="nav-number">3.3.4.</span> <span class="nav-text">分页插件不支持嵌套结果映射</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-Generator"><span class="nav-number">1.</span> <span class="nav-text">Mybatis Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#generatorConfig-xml"><span class="nav-number">1.1.</span> <span class="nav-text">generatorConfig.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动方式"><span class="nav-number">1.2.</span> <span class="nav-text">启动方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-Plugin"><span class="nav-number">2.</span> <span class="nav-text">Mybatis Plugin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis-PageHelper"><span class="nav-number">3.</span> <span class="nav-text">Mybatis PageHelper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分页方式"><span class="nav-number">3.1.</span> <span class="nav-text">分页方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageHelper-startPage-静态方法"><span class="nav-number">3.1.1.</span> <span class="nav-text">PageHelper.startPage 静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISelect接口-方式"><span class="nav-number">3.1.2.</span> <span class="nav-text">ISelect接口 方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.2.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意项"><span class="nav-number">3.3.</span> <span class="nav-text">注意项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageHelper-startPage-方法重要提示"><span class="nav-number">3.3.1.</span> <span class="nav-text">PageHelper.startPage 方法重要提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页插件不支持嵌套结果映射"><span class="nav-number">3.3.2.</span> <span class="nav-text">分页插件不支持嵌套结果映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页插件不支持带有-for-update-语句的分页"><span class="nav-number">3.3.3.</span> <span class="nav-text">分页插件不支持带有 for update 语句的分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请不要配置多个分页插件"><span class="nav-number">3.3.4.</span> <span class="nav-text">请不要配置多个分页插件</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1077,7 +1077,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-snowflake-o"></i>
   </span>

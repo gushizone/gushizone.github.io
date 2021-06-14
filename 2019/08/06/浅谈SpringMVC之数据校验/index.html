@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="Gushi&#39;s Blog">
 <meta property="og:description" content="在 浅谈SpringMVC之数据绑定 已经介绍了如何获取数据，本文就来介绍一下 SpringMVC 中如何对数据进行校验。 认识 Validation自  Spring3.0 开始，SpringMVC 提供了对 Java校验API ( Java Validation AP , 又称 JSR-303 ) 的支持，JSR303 是一个标准， 一般会使用它的实现，如 hibernate-validato">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-13T06:03:40.838Z">
+<meta property="og:updated_time" content="2020-07-05T14:07:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈SpringMVC之数据校验">
 <meta name="twitter:description" content="在 浅谈SpringMVC之数据绑定 已经介绍了如何获取数据，本文就来介绍一下 SpringMVC 中如何对数据进行校验。 认识 Validation自  Spring3.0 开始，SpringMVC 提供了对 Java校验API ( Java Validation AP , 又称 JSR-303 ) 的支持，JSR303 是一个标准， 一般会使用它的实现，如 hibernate-validato">
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.1k</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -535,7 +535,7 @@
 <p>若使用 springboot ，则  spring-boot-starter-web 已包含，本文部分基于 springboot，存在差异（ 6.0+ 后包结构改变）。</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- hibernate-validator (自动依赖 validation-api) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-validator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.1.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="校验注解"><a href="#校验注解" class="headerlink" title="校验注解"></a>校验注解</h2><p>这里介绍一下 <code>javax.validation.constraints</code> 所定义的常用注解，来自 <code>validation-api</code> ，它的实现在 <code>hibernate-validator</code> 下 <code>org.hibernate.validator.internal.constraintvalidators.bv</code> 。</p>
+<h2 id="校验注解"><a href="#校验注解" class="headerlink" title="校验注解"></a>校验注解</h2><p>这里介绍一下 <code>javax.validation.constraints</code> 所定义的常用注解，来自 <code>validation-api</code>  。</p>
 <blockquote>
 <p><code>hibernate-validator</code> 下依然存在许多未过时的校验注解，这里不会介绍。</p>
 </blockquote>
@@ -601,7 +601,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="Valid-与-Validated"><a href="#Valid-与-Validated" class="headerlink" title="@Valid 与 @Validated"></a><code>@Valid</code> 与 <code>@Validated</code></h2><p>一般校验注解会作用于 pojo类，而使用 <code>@Valid</code> 或 <code>@Validated</code> 可以通知 Spring 进行校验,，校验结果会被保存到 <code>BindingResult</code> 中。具体区别如下：</p>
+<h2 id="Valid-与-Validated"><a href="#Valid-与-Validated" class="headerlink" title="@Valid 与 @Validated"></a>@Valid 与 @Validated</h2><p>一般校验注解会作用于 pojo类，而使用 <code>@Valid</code> 或 <code>@Validated</code> 可以通知 Spring 进行校验，校验结果默认以异常抛出或使用 <code>BindingResult</code> 接收。</p>
 <table>
 <thead>
 <tr>
@@ -633,7 +633,7 @@
 <p>相关提示默认会做国际化兼容，自定义信息需要自己提供。</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;id=id不能为空！&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="BindingResult"><a href="#BindingResult" class="headerlink" title="BindingResult"></a><code>BindingResult</code></h2><p>除了可以获取验证结果，还可以通过 <code>BindingResult</code> 直接注册错误。</p>
+<h2 id="BindingResult"><a href="#BindingResult" class="headerlink" title="BindingResult"></a>BindingResult</h2><p>除了可以获取验证结果，还可以通过 <code>BindingResult</code> 直接注册错误。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /mvc/validation/binding-result?name=admin</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/binding-result"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">bindingResult</span><span class="params">(ValidatedParam param, BindingResult bindingResult)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="string">"admin"</span>.equals(param.getName())) &#123;</span><br><span class="line">    bindingResult.rejectValue(<span class="string">"name"</span>, <span class="string">"nonname"</span>, <span class="string">"此名称不允许使用！"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (bindingResult.hasErrors())&#123;</span><br><span class="line">    <span class="keyword">return</span> fieldErrors(bindingResult).toString();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;name=此名称不允许使用！&#125;</span><br></pre></td></tr></table></figure>
@@ -652,7 +652,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeleteMapping</span>(<span class="string">"/validated"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">validated</span><span class="params">(@Validated(DeleteValidateGroup.class)</span> ValidatedParam param, BindingResult bindingResult) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (bindingResult.hasErrors())&#123;</span><br><span class="line">    <span class="keyword">return</span> fieldErrors(bindingResult).toString();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;id=id不能为空！&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="自定义-Validation"><a href="#自定义-Validation" class="headerlink" title="自定义 Validation"></a>自定义 Validation</h2><p>我们也可以自定义校验规则来满足复杂需求，只需要定义一个校验注解并实现对应的校验实现逻辑类。这里通过一个简单示例来演示一下。</p>
-<h3 id="自定义校验注解"><a href="#自定义校验注解" class="headerlink" title="自定义校验注解"></a>自定义校验注解</h3><p>使用 <code>@Constraint</code> 来指定校验逻辑类。（也有其他方式，但这种方式最简单直接。）</p>
+<h3 id="自定义校验注解"><a href="#自定义校验注解" class="headerlink" title="自定义校验注解"></a>自定义校验注解</h3><p>使用 <code>@Constraint</code> 来指定校验逻辑类。</p>
+<blockquote>
+<p>也有其他方式，但这种方式最简单直接。</p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -866,8 +869,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -884,10 +885,6 @@
                     
                   
                     
-                    
-                      
-                    
-                      
                     
                       
                     
@@ -1147,7 +1144,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-snowflake-o"></i>
   </span>
